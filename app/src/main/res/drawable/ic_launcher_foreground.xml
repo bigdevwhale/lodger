@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A door left ajar: lamplight in the gap, and two eyes in the dark behind it. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- the frame -->
+    <path android:fillColor="#FFE8DCC2" android:pathData="M34,28h40v54h-4v-50h-32v50h-4z" />
+    <!-- the dark room behind -->
+    <path android:fillColor="#FF050403" android:pathData="M38,32h32v50h-32z" />
+    <!-- lamplight falling through the gap onto the floor -->
+    <path android:fillColor="#FFD8A856" android:pathData="M38,32h4v50h-4z" />
+    <path android:fillColor="#66D8A856" android:pathData="M38,82h4l-10,8h-8z" />
+    <!-- the door, swung open into the room -->
+    <path android:fillColor="#FF5A4632" android:pathData="M42,32l26,-3v57l-26,-4z" />
+    <path android:fillColor="#FFD8A856" android:pathData="M61,57.5a2,2 0,1 1,0.01 0z" />
+    <!-- eyes -->
+    <path android:fillColor="#FFF3E2B5" android:pathData="M45.6,50a1.6,1.6 0,1 1,0.01 0zM50.4,50a1.6,1.6 0,1 1,0.01 0z" />
+</vector>

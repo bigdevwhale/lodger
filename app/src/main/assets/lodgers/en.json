@@ -1,0 +1,1490 @@
+[
+ {
+  "id": "teacher",
+  "kind": "Ghost",
+  "name": "Vera Arkadyevna",
+  "years": "1902–1971",
+  "role": "music teacher",
+  "intro": "At night, in an empty room, someone quietly taps out a beat. One-and, two-and.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "room",
+    "type": "chair",
+    "text": "A chair stands in the middle of the room, facing a bare wall. As if before an instrument.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 2,
+    "room": "hall",
+    "type": "footprints",
+    "text": "Narrow prints of heeled shoes — from the door to a wall where there is nothing.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "room",
+    "type": "hand",
+    "text": "A handprint on the wallpaper, the fingers very long. Stretched wide, as if across an octave.",
+    "mark": "",
+    "at": "wall"
+   },
+   {
+    "night": 6,
+    "room": "kitchen",
+    "type": "cup",
+    "text": "A cup of cold tea with lemon. You don’t take lemon.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "room",
+    "type": "figure",
+    "text": "Someone very upright sits by the wall, hands raised in front of them. Only in the photo.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "balcony",
+    "type": "writing",
+    "text": "Traced on the misted glass: ♩ = 60.",
+    "mark": "♩ = 60",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "23:40",
+    "text": "A piano stood here. Don’t put anything here."
+   },
+   {
+    "night": 2,
+    "time": "07:12",
+    "text": "Stomping out of time again."
+   },
+   {
+    "night": 3,
+    "time": "22:05",
+    "text": "One-and, two-and. Count out loud, I can’t hear you."
+   },
+   {
+    "night": 5,
+    "time": "21:30",
+    "text": "The boy from the fourth floor never came to his lesson. The thirty-first of October, seventy-one."
+   },
+   {
+    "night": 7,
+    "time": "00:17",
+    "text": "You have good hands. Long ones. A pity."
+   },
+   {
+    "night": 10,
+    "time": "19:45",
+    "text": "I don’t need you to play. I need to hear that he finished."
+   },
+   {
+    "night": 13,
+    "time": "23:59",
+    "text": "Soon I can go. I can feel the floor letting go of me."
+   }
+  ],
+  "words": [
+   "he",
+   "never",
+   "finished",
+   "the",
+   "C-sharp",
+   "nocturne"
+  ],
+  "freqs": [
+   88.6,
+   91.3,
+   94.8,
+   98.2,
+   101.7,
+   105.4
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "Photograph, 1969",
+    "text": "A woman in a severe blouse at a piano. Beside her, a boy of about nine, clutching sheet music to his chest. On the back: “Vera A. and Petya G.”"
+   },
+   {
+    "night": 5,
+    "kind": "ticket",
+    "title": "Season ticket",
+    "text": "Philharmonic, 1971/72 season. Row 6, seat 14. The stub was never torn off — nobody went to the concert."
+   },
+   {
+    "night": 8,
+    "kind": "letter",
+    "title": "Scrap of a letter",
+    "text": "“…Petya is gifted, but lazy. If he would just once play the Chopin through to the end in front of me, I would…”"
+   },
+   {
+    "night": 11,
+    "kind": "object",
+    "title": "Metronome",
+    "text": "Wooden, its weight missing. Found behind the skirting board. The arm stopped at 60."
+   },
+   {
+    "night": 14,
+    "kind": "date",
+    "title": "Death certificate",
+    "text": "Lisovskaya, Vera Arkadyevna, 1902–1971. Died on 31 October, at seven in the evening — the hour of the lesson."
+   }
+  ],
+  "truth": "For thirty years Vera Arkadyevna gave lessons here. Petya Glebov, her last pupil, didn’t come on 31 October 1971 — he was ill. That evening her heart stopped. Petya never did play the C-sharp minor nocturne through for her, and she is still waiting for the final chord.",
+  "task": {
+   "title": "Finish it for Petya",
+   "text": "In the evening, at seven — the hour of the lesson — play Chopin’s Nocturne in C-sharp minor in this room. All of it, without interrupting, without scrolling your phone.",
+   "askName": false
+  },
+  "farewell": "The last chord hung in the air for a long time. Then the chair turned to the window on its own. The handprint on the wallpaper is gone. “Good. Good. Now I can go.”",
+  "finale": ""
+ },
+ {
+  "id": "domovoy",
+  "kind": "Domovoy",
+  "name": "Kuzma",
+  "years": "since 1958",
+  "role": "master of the house",
+  "intro": "At night someone rearranges the cups in the kitchen. In the morning their handles all point to the right.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "kitchen",
+    "type": "crumbs",
+    "text": "Breadcrumbs on the table, laid out in a half-circle, like a horseshoe.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 2,
+    "room": "hall",
+    "type": "keys",
+    "text": "The keys aren’t on their hook — they hang on a little nail that wasn’t there yesterday.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "kitchen",
+    "type": "eyes",
+    "text": "Two small lights look out from under the stove. Like embers.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "room",
+    "type": "hand",
+    "text": "On a dusty shelf, the print of a small hand. A hairy one.",
+    "mark": "",
+    "at": "wall"
+   },
+   {
+    "night": 9,
+    "room": "hall",
+    "type": "door",
+    "text": "The pantry door is ajar. Warmth drifts out of it, as from an old stove.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "room",
+    "type": "thread",
+    "text": "Threads from your sweater, braided into a plait. Neat and tight — you won’t snap it.",
+    "mark": "",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "03:10",
+    "text": "Who are you? Nobody invited you."
+   },
+   {
+    "night": 2,
+    "time": "03:12",
+    "text": "Cups go handles to the right. That’s how it was."
+   },
+   {
+    "night": 3,
+    "time": "04:01",
+    "text": "Whistling again. Whistle indoors and you whistle your money away. Not my problem. You’re the one living here."
+   },
+   {
+    "night": 5,
+    "time": "02:44",
+    "text": "The old ones moved out in eighty-nine. Took the bast shoe, forgot to call me into it."
+   },
+   {
+    "night": 8,
+    "time": "03:33",
+    "text": "Good bread you buy. Borodinsky. The old master bought that kind."
+   },
+   {
+    "night": 10,
+    "time": "01:20",
+    "text": "The hall floor creaks because I walk there. Don’t fix it."
+   },
+   {
+    "night": 13,
+    "time": "03:03",
+    "text": "I might stay, maybe. If you asked me properly."
+   }
+  ],
+  "words": [
+   "forgot",
+   "me",
+   "shoe",
+   "empty",
+   "call"
+  ],
+  "freqs": [
+   89.4,
+   93.1,
+   96.6,
+   100.9,
+   104.2
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "Housewarming, 1958",
+    "text": "A family at the table, a round loaf in the middle. In the corner of the shot, by the stove pipe, a blur that looks like a beard."
+   },
+   {
+    "night": 5,
+    "kind": "object",
+    "title": "Bast shoe",
+    "text": "An old one, from the top cupboard in the hall. Inside, a handful of dry crumbs and a child’s mitten."
+   },
+   {
+    "night": 8,
+    "kind": "letter",
+    "title": "Postcard, 1989",
+    "text": "“Dear Zotovs! How’s the new place? Did you remember to bring the domovoy? Ha-ha. Love, Nina.”"
+   },
+   {
+    "night": 11,
+    "kind": "address",
+    "title": "New address",
+    "text": "12 Sadovaya St, flat 40 — where the Zotovs moved. The building was demolished in 2011."
+   },
+   {
+    "night": 14,
+    "kind": "object",
+    "title": "Spoon",
+    "text": "Wooden, gnawed along the edge. It was under the bath. Scratched into it: “For Kuzya.”"
+   }
+  ],
+  "truth": "Kuzma the domovoy has lived here since the Zotovs’ housewarming in 1958. In 1989 they moved away and forgot to call him into the bast shoe to come along. Their new building was torn down long ago — he has nowhere to go. For more than thirty years he has kept watch over strangers and sulked. Really, all he wants is to be asked.",
+  "task": {
+   "title": "Ask him to stay",
+   "text": "For the night, leave a saucer of milk and a heel of Borodinsky rye by the stove. Say out loud: “Grandfather domovoy, live with us, bear no grudge, be master of this house.” Don’t see him off — he needs to stay, by invitation.",
+   "askName": false
+  },
+  "farewell": "In the morning the saucer was empty and washed. The shoes in the hall stand in pairs, toes to the door. There will be no more notes: the master of the house doesn’t write to the household. Only the hall floor creaks now and then.",
+  "finale": "The flat no longer feels like someone else’s."
+ },
+ {
+  "id": "hide",
+  "kind": "Echo of a game",
+  "name": "Olya Sinitsyna",
+  "years": "1987",
+  "role": "a game of hide-and-seek that never ended",
+  "intro": "At exactly nine in the evening someone quietly counts to five. Then everything goes very still.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "room",
+    "type": "door",
+    "text": "The wardrobe door stands open a hand’s width. Inside, dark.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 2,
+    "room": "hall",
+    "type": "footprints",
+    "text": "Small footprints in socks — from the kitchen to the wardrobe.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "bath",
+    "type": "writing",
+    "text": "In the steam on the mirror: SEEK.",
+    "mark": "SEEK",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "room",
+    "type": "eyes",
+    "text": "Someone is watching from under the sofa. Flash photo, 23:40.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "kitchen",
+    "type": "chair",
+    "text": "A stool pushed up beneath the top cupboards.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "balcony",
+    "type": "hand",
+    "text": "A child’s handprint on the balcony glass. On the outside.",
+    "mark": "",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "21:00",
+    "text": "One, two, three, four, five."
+   },
+   {
+    "night": 2,
+    "time": "21:00",
+    "text": "Ready or not, here I come. Oops. I mean, here you come."
+   },
+   {
+    "night": 3,
+    "time": "22:30",
+    "text": "Warm, warm. Cold."
+   },
+   {
+    "night": 5,
+    "time": "21:15",
+    "text": "Mum said till nine. Is it nine yet?"
+   },
+   {
+    "night": 7,
+    "time": "00:00",
+    "text": "You’re standing right next to me. I can hear you breathing."
+   },
+   {
+    "night": 10,
+    "time": "21:00",
+    "text": "Nobody ever found me. Thirty-nine years. That’s a record, right?"
+   },
+   {
+    "night": 13,
+    "time": "21:00",
+    "text": "Cold. Hot. Hot. Well?"
+   }
+  ],
+  "words": [
+   "I’m",
+   "behind",
+   "the",
+   "wardrobe",
+   "wall"
+  ],
+  "freqs": [
+   88.9,
+   92.7,
+   97.3,
+   99.8,
+   106.1
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "The yard, 1987",
+    "text": "A girl in baggy-kneed tights, two plaits. Counting, her face pressed to a poplar. On the back: “Olya, age 7.”"
+   },
+   {
+    "night": 5,
+    "kind": "object",
+    "title": "Sweet wrapper",
+    "text": "“Bear in the North”, folded into a tiny square. Stuck in the gap between the wardrobe and the wall."
+   },
+   {
+    "night": 8,
+    "kind": "letter",
+    "title": "Mum’s diary",
+    "text": "“3 May. Olya hid in the nook behind the wardrobe for over an hour, we’d already run to the police. Dad found her asleep and carried her to bed. We didn’t scold her.”"
+   },
+   {
+    "night": 11,
+    "kind": "date",
+    "title": "The nook",
+    "text": "There really is a nook behind the wardrobe, papered over in 1994. Exactly a child’s height."
+   },
+   {
+    "night": 14,
+    "kind": "address",
+    "title": "A web page",
+    "text": "Olga Sinitsyna, 46, Kaliningrad. Primary school teacher. Her profile says: “Best at hide-and-seek.”"
+   }
+  ],
+  "truth": "Olya didn’t die. She grew up, lives in Kaliningrad and teaches children. But on 3 May 1987, when her dad lifted her, asleep, out of the nook behind the wardrobe, nobody said the one thing that mattered — “Found you!” The game was left unfinished. What lives here isn’t the girl but her hide-and-seek: the echo of a game, still waiting for whoever is it.",
+  "task": {
+   "title": "Say “Found you!”",
+   "text": "Put your palm on the wall behind the wardrobe and say out loud: “Olly olly oxen free — Olya, you’re found.” Then, if you feel like it, write to someone you used to play with in the yard as a child.",
+   "askName": false
+  },
+  "farewell": "The wardrobe door closed by itself — softly, without a creak. The last note: “Yay. Now I’m it.” And that was all. Somewhere in Kaliningrad a teacher suddenly laughs in the middle of a lesson and can’t say why.",
+  "finale": ""
+ },
+ {
+  "id": "mirror",
+  "kind": "Reflection",
+  "name": "Kolya Yershov",
+  "years": "23 June 1941",
+  "role": "a reflection that stayed behind to wait",
+  "intro": "You walk past the mirror in the hall, and your reflection moves half a second late.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "hall",
+    "type": "figure",
+    "text": "Someone in a greatcoat stands in the hall mirror. The hall is empty.",
+    "mark": "",
+    "at": "mirrorfig"
+   },
+   {
+    "night": 2,
+    "room": "hall",
+    "type": "hand",
+    "text": "A handprint on the mirror — from the inside. It won’t wipe off.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "bath",
+    "type": "frost",
+    "text": "The bathroom mirror is covered in frost. In October. In a warm bathroom.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "room",
+    "type": "writing",
+    "text": "On the misted window: 22.VI.",
+    "mark": "22.VI",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "hall",
+    "type": "footprints",
+    "text": "Boot prints — from the mirror to the door. None coming back.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "kitchen",
+    "type": "cup",
+    "text": "An aluminium mug, dented. Standing upside down.",
+    "mark": "",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "06:00",
+    "text": "Reveille."
+   },
+   {
+    "night": 2,
+    "time": "06:00",
+    "text": "Don’t cover it. I have to see the door."
+   },
+   {
+    "night": 4,
+    "time": "05:58",
+    "text": "Kolka promised to come back and look. We had a deal."
+   },
+   {
+    "night": 6,
+    "time": "23:10",
+    "text": "You check yourself the way he did. Left to right. Then you fix your hair."
+   },
+   {
+    "night": 8,
+    "time": "06:00",
+    "text": "How long has it been? I can’t see a calendar from here."
+   },
+   {
+    "night": 11,
+    "time": "04:15",
+    "text": "It’s very quiet here. Behind the glass it’s always forty-one, the twenty-third of June, morning."
+   },
+   {
+    "night": 13,
+    "time": "06:00",
+    "text": "Tell me he made it."
+   }
+  ],
+  "words": [
+   "promised",
+   "to",
+   "return",
+   "meet",
+   "eyes"
+  ],
+  "freqs": [
+   90.2,
+   93.9,
+   97.8,
+   102.4,
+   106.8
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "Seeing off, 1941",
+    "text": "A young man in a new army tunic by the hall mirror. His mother holds on to his sleeve. He is smiling at his reflection."
+   },
+   {
+    "night": 5,
+    "kind": "letter",
+    "title": "Folded triangle",
+    "text": "“Mum, don’t cry. I told the mirror I’d come back and look it in the eye — remember, like when I was little? So I’ll come back. Your Kolya.” September 1941."
+   },
+   {
+    "night": 8,
+    "kind": "object",
+    "title": "Medal",
+    "text": "“For the Liberation of Prague.” In a matchbox behind the mirror frame."
+   },
+   {
+    "night": 11,
+    "kind": "date",
+    "title": "House register",
+    "text": "Yershova, Anna Petrovna, struck off in 1942 — evacuation. The flat was given to other tenants."
+   },
+   {
+    "night": 14,
+    "kind": "address",
+    "title": "Archive reply",
+    "text": "Yershov, Nikolai Ivanovich, 1922–1998. Came home in 1945 — to his mother, at her new address. Never came into this building."
+   }
+  ],
+  "truth": "Leaving for the front, Kolya Yershov promised his reflection he would come back and look it in the eye — a childhood charm for coming home alive. He did come back, and lived until 1998. But by then his mother lived at another address, and he never set foot in this hall again. The reflection stayed to wait: behind the glass it is still 23 June 1941, morning.",
+  "task": {
+   "title": "Look it in the eye",
+   "text": "In the evening, by candlelight, stand in front of the hall mirror and look yourself in the eye for one minute. Then say: “Kolya came back. He made it to Prague. You don’t have to wait.”",
+   "askName": false
+  },
+  "farewell": "For a minute there was only you in the mirror. Then, for half a second, a young face that smiled and saluted. The frost in the bathroom has melted. The handprint is gone. The mirror shows only you again.",
+  "finale": ""
+ },
+ {
+  "id": "postman",
+  "kind": "Ghost",
+  "name": "Mikhail Trofimovich Losev",
+  "years": "1921–1979",
+  "role": "postman",
+  "intro": "At eleven in the morning the doorbell rings. No one on the landing. Under the door, an empty envelope.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "hall",
+    "type": "letter",
+    "text": "An envelope under the door, no stamp. Nothing inside.",
+    "mark": "",
+    "at": "sill"
+   },
+   {
+    "night": 2,
+    "room": "hall",
+    "type": "footprints",
+    "text": "Wet shoe prints — up to the door, and only up to the door.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "kitchen",
+    "type": "cup",
+    "text": "A glass in a metal holder. Tea with three lumps of sugar, unstirred.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "hall",
+    "type": "door",
+    "text": "The front door is open on the chain. The draught smells of wet wool and sealing wax.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "balcony",
+    "type": "figure",
+    "text": "Down by the entrance, a man with a bag over his shoulder is looking up at your balcony.",
+    "mark": "",
+    "at": "below"
+   },
+   {
+    "night": 12,
+    "room": "room",
+    "type": "writing",
+    "text": "On the misted window: 1979.",
+    "mark": "1979",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "11:00",
+    "text": "A letter for you. Registered. Sign here, please."
+   },
+   {
+    "night": 2,
+    "time": "11:00",
+    "text": "Nobody home again."
+   },
+   {
+    "night": 3,
+    "time": "11:05",
+    "text": "Third time I’ve called. By the rules — return to sender. But there’s no sender either."
+   },
+   {
+    "night": 5,
+    "time": "19:20",
+    "text": "Thirty-four years on the same round. Never lost a single letter. Almost."
+   },
+   {
+    "night": 7,
+    "time": "11:00",
+    "text": "Her handwriting is round, like a schoolgirl’s. “Into his own hands.”"
+   },
+   {
+    "night": 10,
+    "time": "02:30",
+    "text": "I never opened it. Word of honour. Only held it up to the light."
+   },
+   {
+    "night": 13,
+    "time": "11:00",
+    "text": "The bag has gone light. One letter left."
+   }
+  ],
+  "words": [
+   "by",
+   "hand",
+   "or",
+   "poste",
+   "restante"
+  ],
+  "freqs": [
+   89.1,
+   92.2,
+   95.5,
+   99.3,
+   103.6
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "Board of honour, 1975",
+    "text": "“Best postman of the district — Losev M. T.” Moustache, peaked cap, smiling only with his eyes."
+   },
+   {
+    "night": 5,
+    "kind": "object",
+    "title": "Envelope",
+    "text": "Yellowed, postmarked 14.11.1979. The address — this flat. Addressed “To Gennady”. Unopened."
+   },
+   {
+    "night": 8,
+    "kind": "date",
+    "title": "House register",
+    "text": "The flat stood empty from October to December 1979: the tenant, Gennady Somov, had gone off to build the BAM railway."
+   },
+   {
+    "night": 11,
+    "kind": "letter",
+    "title": "Read against the light",
+    "text": "“Gena, I say yes. If you still want me — come and fetch me before New Year. T.”"
+   },
+   {
+    "night": 14,
+    "kind": "date",
+    "title": "Obituary",
+    "text": "Losev M. T., postman. Died 29 December 1979. One undelivered letter was found in his bag."
+   }
+  ],
+  "truth": "Tamara said yes to Gennady, but he had already left for the BAM. Losev the postman brought the letter to the empty flat three times and could neither deliver it nor send it back. He died just before New Year, and the letter stayed in his bag. Gena never learned her answer, and Mikhail Trofimovich still believes he left the job unfinished.",
+  "task": {
+   "title": "Deliver",
+   "text": "Write a letter by hand to someone you’ve long wanted to tell something. Not a message — a letter. Take it to the post office and send it. Photograph the receipt: the postman needs to know it got there.",
+   "askName": false
+  },
+  "farewell": "No one stands by the entrance anymore. In the morning, an empty envelope under the door, and on it in pencil: “Delivered. Losev.” By evening the pencil had faded too.",
+  "finale": ""
+ },
+ {
+  "id": "kikimora",
+  "kind": "Kikimora",
+  "name": "Kikimora",
+  "years": "since January 2003",
+  "role": "spirit of the unfinished",
+  "intro": "In the morning, yarn from a sweater is unwound all over the room. In the night something rustled behind the armchair.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "room",
+    "type": "thread",
+    "text": "Yarn unwound all over the room — from the armchair to under the bed.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 2,
+    "room": "kitchen",
+    "type": "crumbs",
+    "text": "Buckwheat spilled across the table in a neat spiral. One grain at a time.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "room",
+    "type": "eyes",
+    "text": "Behind the armchair, something small with a long nose. Eyes like beads.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "bath",
+    "type": "wet",
+    "text": "Wet footprints, tiny, long-toed — from the bath to the radiator.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "kitchen",
+    "type": "door",
+    "text": "The oven door is ajar. Inside, someone has built a nest of your hair ties.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "room",
+    "type": "chair",
+    "text": "A chair stands in the middle of the room, rocking. By itself.",
+    "mark": "",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "02:00",
+    "text": "Not finished. Not finished. Not finished."
+   },
+   {
+    "night": 2,
+    "time": "02:10",
+    "text": "So much you’ve started. Mmm. Tasty."
+   },
+   {
+    "night": 3,
+    "time": "03:00",
+    "text": "The book on the nightstand, bookmark at page forty-two. Third year now."
+   },
+   {
+    "night": 5,
+    "time": "02:22",
+    "text": "Lidia Pavlovna didn’t finish either. A scarf. Blue. I sleep in it."
+   },
+   {
+    "night": 8,
+    "time": "03:15",
+    "text": "Don’t be scared. I only tangle things. So it shows."
+   },
+   {
+    "night": 10,
+    "time": "02:00",
+    "text": "One will do. One thing finished — and it gets too cramped for me, and I go."
+   },
+   {
+    "night": 13,
+    "time": "02:40",
+    "text": "Counting stitches. A hundred and twelve. A hundred and thirteen."
+   }
+  ],
+  "words": [
+   "finish",
+   "just",
+   "one",
+   "I’ll",
+   "go"
+  ],
+  "freqs": [
+   88.3,
+   91.8,
+   96.1,
+   100.4,
+   105
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "object",
+    "title": "Ball of yarn",
+    "text": "Blue wool, half wound. The strand runs into a gap behind the skirting board — and goes on, and on."
+   },
+   {
+    "night": 5,
+    "kind": "photo",
+    "title": "Photo, 2002",
+    "text": "An elderly woman in a rocking chair, knitting needles and a blue scarf in her lap. On the back: “For my grandson, for New Year.”"
+   },
+   {
+    "night": 8,
+    "kind": "object",
+    "title": "Knitting needles",
+    "text": "Two steel needles, 113 stitches on one of them. The scarf breaks off in the middle of the pattern."
+   },
+   {
+    "night": 11,
+    "kind": "letter",
+    "title": "Note",
+    "text": "“Seryozha, I’ll finish the scarf when they let me out. Don’t buy one in a shop. Grandma.” January 2003."
+   },
+   {
+    "night": 14,
+    "kind": "date",
+    "title": "From a dictionary",
+    "text": "Kikimora (Slavic) — a spirit of the unfinished. Settles in abandoned work. Leaves when something in the house is seen through to the end."
+   }
+  ],
+  "truth": "Lidia Pavlovna was knitting a scarf for her grandson; in January 2003 she went into hospital and never came back. The scarf stayed on the needles, at the hundred and thirteenth stitch. In the abandoned work a kikimora took root — a spirit of things begun and never finished. Ever since, she has fed on everything the tenants left undone, and tangles the yarn so that it shows.",
+  "task": {
+   "title": "See it through",
+   "text": "Choose one thing you’ve abandoned — a book, a letter, a shelf, a drawing — and finish it today. Not the biggest one. Just one. Then wind any piece of thread into a ball and leave it by the threshold.",
+   "askName": false
+  },
+  "farewell": "In the morning the yarn is wound into a tight ball, and by the threshold lies a blue scarf — finished, with tassels. Behind the armchair, nothing. The flat feels roomy, as after a big clean.",
+  "finale": ""
+ },
+ {
+  "id": "whisperer",
+  "kind": "Something",
+  "name": "The Whisperer",
+  "years": "since 1962",
+  "role": "the one in the vent",
+  "intro": "At night someone whispers in the ventilation. Many voices, and not one word you can make out.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "kitchen",
+    "type": "eyes",
+    "text": "Something glinted behind the vent grille. Like a wet eye.",
+    "mark": "",
+    "at": "vent"
+   },
+   {
+    "night": 2,
+    "room": "bath",
+    "type": "frost",
+    "text": "Frost around the grille in the bathroom, in a pattern like an ear.",
+    "mark": "",
+    "at": "vent"
+   },
+   {
+    "night": 4,
+    "room": "kitchen",
+    "type": "writing",
+    "text": "On the tiles by the cooker hood, a finger traced in the grease: shh.",
+    "mark": "shh",
+    "at": "wall"
+   },
+   {
+    "night": 6,
+    "room": "hall",
+    "type": "door",
+    "text": "The front door is ajar. Whispering on the stairs. The stairs are empty.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "bath",
+    "type": "figure",
+    "text": "Someone stands in the corner of the bathroom, head bent to the grille. Only in the photo.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "room",
+    "type": "hand",
+    "text": "A print on the wallpaper — not a palm. More like an ear pressed to the wall.",
+    "mark": "",
+    "at": "wall"
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "00:30",
+    "text": "Your home is quiet. Boring."
+   },
+   {
+    "night": 2,
+    "time": "00:31",
+    "text": "Third floor stole a neighbour’s bicycle in eighty-three. Nobody knows. I know."
+   },
+   {
+    "night": 3,
+    "time": "01:00",
+    "text": "Today on the phone you said “I’m fine.” Not true. Untruth rings in the pipes."
+   },
+   {
+    "night": 5,
+    "time": "00:45",
+    "text": "Sixty years they’ve all whispered into the vent and thought no one could hear. Too much. I’m cramped."
+   },
+   {
+    "night": 7,
+    "time": "02:02",
+    "text": "There’s one whisper that isn’t meant for me. It has to be passed on."
+   },
+   {
+    "night": 10,
+    "time": "00:00",
+    "text": "Valentina, flat 18, sixty-six: “Pasha, I…” She didn’t finish. Then the extractor fan."
+   },
+   {
+    "night": 13,
+    "time": "01:11",
+    "text": "Say something true out loud. The truth makes me lighter."
+   }
+  ],
+  "words": [
+   "tell",
+   "him",
+   "I",
+   "love",
+   "you"
+  ],
+  "freqs": [
+   90.6,
+   94.4,
+   98.6,
+   101.1,
+   104.8
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "object",
+    "title": "Grille",
+    "text": "A brass ventilation grille. Behind it, slips of paper rolled into tubes — dozens of them. On each, someone’s whisper, written down in a stranger’s hand."
+   },
+   {
+    "night": 5,
+    "kind": "photo",
+    "title": "Subbotnik, 1966",
+    "text": "The yard. A girl with a rake isn’t looking at the camera but at a boy from the fifth floor. On the back: “Valya and Pasha.”"
+   },
+   {
+    "night": 8,
+    "kind": "date",
+    "title": "House register",
+    "text": "Pavel Ryabov, flat 31, struck off in 1967 — called up. Valentina Kravets, flat 18, married someone else in 1970."
+   },
+   {
+    "night": 11,
+    "kind": "letter",
+    "title": "Slip from the grille",
+    "text": "In a child’s handwriting: “It was me who broke the Kuznetsovs’ window. Mishka didn’t do it.” 1974."
+   },
+   {
+    "night": 14,
+    "kind": "address",
+    "title": "Records office reply",
+    "text": "Pavel Ryabov, 81, and Valentina Kravets, 79, live in the same care home in Tver. On different floors. Neither knows the other is there."
+   }
+  ],
+  "truth": "The Whisperer isn’t a person. He is sixty years of secrets that the tenants whispered into the ventilation, sure that no one could hear. He heard everything. One unfinished whisper weighs on him most: Valya from flat eighteen never told Pasha the one thing that mattered. Now they live in the same care home and don’t know about each other.",
+  "task": {
+   "title": "Say it out loud",
+   "text": "Tell one living person something you’ve kept to yourself for a long time. Not into the vent — to their face, or on the phone. The Whisperer will be one whisper lighter, and he will let this house go.",
+   "askName": false
+  },
+  "farewell": "In the night the pipes hummed for a long time, as if something huge had breathed out. By morning there was only ordinary dust behind the grille. And in Tver, they say, an old woman suddenly climbed the stairs to the fourth floor, not knowing why herself.",
+  "finale": ""
+ },
+ {
+  "id": "upstairs",
+  "kind": "Ghost",
+  "name": "Arkady Lvovich Stern",
+  "years": "1906–1986",
+  "role": "the neighbour upstairs, amateur astronomer",
+  "intro": "At night someone knocks from above. You live on the top floor.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "room",
+    "type": "figure",
+    "text": "On the wall, the shadow of a man with his head tipped back. There is nothing to cast it.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 2,
+    "room": "balcony",
+    "type": "footprints",
+    "text": "Footprints lead to the railing — and on, up the wall.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "room",
+    "type": "writing",
+    "text": "On the misted window: 1P/Halley.",
+    "mark": "1P/Halley",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "kitchen",
+    "type": "cup",
+    "text": "A thermos and a mug on the table. As if someone meant to stay up all night.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "balcony",
+    "type": "light",
+    "text": "Above the roof, a small red light, like an astronomer’s torch. It doesn’t move.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "hall",
+    "type": "keys",
+    "text": "On the nail, a key that wasn’t there before. The tag says “Attic”.",
+    "mark": "",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "01:10",
+    "text": "Knock-knock-knock. That’s from above. Yes, I know you’re on the top floor."
+   },
+   {
+    "night": 2,
+    "time": "02:30",
+    "text": "Cloudy. Cloudy again."
+   },
+   {
+    "night": 3,
+    "time": "23:50",
+    "text": "When did you last look at the sky not through a screen? Never mind, don’t answer."
+   },
+   {
+    "night": 5,
+    "time": "04:12",
+    "text": "March of eighty-six. She passed low; over Tambov they could see her, and over us — clouds. Twenty-three nights running."
+   },
+   {
+    "night": 8,
+    "time": "22:22",
+    "text": "Orion is rising. Autumn, then. I tell time by Orion."
+   },
+   {
+    "night": 10,
+    "time": "03:00",
+    "text": "Next time she comes back in twenty sixty-one. I’ll wait. It’s no trouble."
+   },
+   {
+    "night": 13,
+    "time": "21:40",
+    "text": "Clear tonight? Look for me."
+   }
+  ],
+  "words": [
+   "clear",
+   "look",
+   "up",
+   "for",
+   "me"
+  ],
+  "freqs": [
+   89.7,
+   93.4,
+   97,
+   102.9,
+   107.2
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "The roof, 1965",
+    "text": "A man in an ear-flap hat beside a home-made telescope on the roof of this building. Caption: “A. L. Stern. Saturn!!!”"
+   },
+   {
+    "night": 5,
+    "kind": "object",
+    "title": "Observation log",
+    "text": "The last entry: “12.III.1986. Cloudy. Didn’t see Halley. Tomorrow.”"
+   },
+   {
+    "night": 8,
+    "kind": "letter",
+    "title": "Letter to the editor",
+    "text": "“Please let me know whether the comet will be visible in Moscow in April. I have been waiting for it since 1910 — my father showed it to me from this roof. I was four.”"
+   },
+   {
+    "night": 11,
+    "kind": "date",
+    "title": "Death certificate",
+    "text": "Stern A. L., 1906–1986. Died 14 March 1986, on the first clear night in a month."
+   },
+   {
+    "night": 14,
+    "kind": "object",
+    "title": "Attic key",
+    "text": "It hangs in your hall. The attic of this building is still unlocked."
+   }
+  ],
+  "truth": "Arkady Lvovich saw Halley’s Comet in 1910: he was four, sitting on his father’s shoulders on this roof. All his life he waited for it to return. In 1986 it came, and for three weeks clouds hung over Moscow. He died on the first clear night, without ever making it up to the roof. Now he knocks from above and waits for someone to look up for him.",
+  "task": {
+   "title": "Look up for him",
+   "text": "On the first clear night, go outside or onto the balcony, put your phone away for ten minutes and look up. Find the Moon or Orion. Then tell him out loud what you saw.",
+   "askName": false
+  },
+  "farewell": "The knocking from above has stopped. In the morning, an empty thermos on the table and a note in pencil: “Thank you. I saw. Back in 2061 — come and meet me.” The attic key is gone from its nail.",
+  "finale": ""
+ },
+ {
+  "id": "hostess",
+  "kind": "Ghost",
+  "name": "Galina Fyodorovna Morozova",
+  "years": "1931–2004",
+  "role": "hostess of a big table",
+  "intro": "In the evening the flat smells of cabbage pies. The stove is cold.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "kitchen",
+    "type": "cup",
+    "text": "Cups on the table. You take out one, and there are twelve.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 2,
+    "room": "kitchen",
+    "type": "frost",
+    "text": "The kitchen window has steamed up from the inside, as if from the oven. It smells of cabbage and sweet dough.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "room",
+    "type": "chair",
+    "text": "The chairs are set out as if around a big table. Your table seats two.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "hall",
+    "type": "footprints",
+    "text": "Slipper prints — to the door and back. To the door and back. Many times.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "room",
+    "type": "figure",
+    "text": "A woman in an apron stands in the middle of the room, looking out of the window. Photo, 23:45.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 12,
+    "room": "hall",
+    "type": "door",
+    "text": "The front door flung wide open. As if someone is being welcomed.",
+    "mark": "",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "18:00",
+    "text": "You eat standing up? At the stove? At least sit down."
+   },
+   {
+    "night": 2,
+    "time": "18:30",
+    "text": "The aspic has to set by nine. We’ll manage."
+   },
+   {
+    "night": 3,
+    "time": "19:00",
+    "text": "Lena promised to come with the children. Vitya and Tonya. Zinaida from the fifth floor. Twelve of us, if everyone comes."
+   },
+   {
+    "night": 5,
+    "time": "21:00",
+    "text": "They rang — they’re busy. Everyone has the millennium. Never mind, the salads will keep till tomorrow."
+   },
+   {
+    "night": 7,
+    "time": "23:30",
+    "text": "I wore my blue dress that evening. Nobody saw it."
+   },
+   {
+    "night": 10,
+    "time": "18:00",
+    "text": "Nobody’s been round to see you for a long time either, have they? I can tell. One cup."
+   },
+   {
+    "night": 13,
+    "time": "17:00",
+    "text": "Invite someone. Even just one. I’ll bake a pie — you won’t see it, but it’ll taste good."
+   }
+  ],
+  "words": [
+   "table’s",
+   "set",
+   "invite",
+   "someone"
+  ],
+  "freqs": [
+   91,
+   95.2,
+   99.6,
+   103.9
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "New Year, 1985",
+    "text": "A huge table, twenty people, children on grown-ups’ laps. At the head of the table a woman in an apron is laughing."
+   },
+   {
+    "night": 5,
+    "kind": "letter",
+    "title": "Menu",
+    "text": "A sheet of squared paper: “31.12.1999. Olivier salad, herring under a fur coat, aspic, pies (cabbage; egg and spring onion), goose. For 12.”"
+   },
+   {
+    "night": 8,
+    "kind": "photo",
+    "title": "New Year, 1999",
+    "text": "The same table, laid for twelve. At it sits one woman in a blue dress. Taken on the self-timer."
+   },
+   {
+    "night": 11,
+    "kind": "ticket",
+    "title": "Telegram",
+    "text": "“MUM FORGIVE US CANT MAKE IT CHILDREN ILL WILL COME FOR CHRISTMAS KISSES” They never came."
+   },
+   {
+    "night": 14,
+    "kind": "date",
+    "title": "Death certificate",
+    "text": "Morozova, Galina Fyodorovna, 1931–2004. The neighbours remember: every 31 December she laid the table for twelve."
+   }
+  ],
+  "truth": "For forty years Galina Fyodorovna gathered the whole family around this table. On 31 December 1999 she laid it for twelve and put on her blue dress — and nobody came: the millennium, work, the children. She lived another five years and laid the table again every New Year. Now she is here, still waiting for guests.",
+  "task": {
+   "title": "Have people over",
+   "text": "This week, invite someone round — even just one person. Lay the table, even if only for two, but with real plates. You can bake a pie. You can buy one. What matters is that someone sits at the table.",
+   "askName": false
+  },
+  "farewell": "After the guests left, the kitchen smelled of pies for a long time. In the morning eleven cups stood in the cupboard, and the twelfth, left on the table, had a trace of lipstick on it. “That was a lovely evening. Thank you, dear.”",
+  "finale": ""
+ },
+ {
+  "id": "cat",
+  "kind": "Cat spirit",
+  "name": "Cat",
+  "years": "1996–2012",
+  "role": "a cat with no name, on his ninth life",
+  "intro": "At five in the morning something by the radiator meows insistently. You don’t have a cat.",
+  "traces": [
+   {
+    "night": 1,
+    "room": "hall",
+    "type": "paws",
+    "text": "Cat prints on the dusty floor — from the door to the radiator.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 2,
+    "room": "room",
+    "type": "eyes",
+    "text": "Two green lights under the sofa. Flash photo.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 4,
+    "room": "kitchen",
+    "type": "cup",
+    "text": "A saucer by the stove. Dry, licked to a shine.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 6,
+    "room": "room",
+    "type": "thread",
+    "text": "A thread pulled from the curtain and tangled, as if someone played with it all night.",
+    "mark": "",
+    "at": ""
+   },
+   {
+    "night": 9,
+    "room": "room",
+    "type": "paws",
+    "text": "Paw prints on the windowsill. And on the glass — going up.",
+    "mark": "",
+    "at": "rail"
+   },
+   {
+    "night": 12,
+    "room": "balcony",
+    "type": "cat",
+    "text": "A cat sits on the balcony railing. Seventh floor. Only in the photo.",
+    "mark": "",
+    "at": ""
+   }
+  ],
+  "notes": [
+   {
+    "night": 1,
+    "time": "05:00",
+    "text": "Meow. (That means: feed me.)"
+   },
+   {
+    "night": 2,
+    "time": "05:00",
+    "text": "Meow."
+   },
+   {
+    "night": 3,
+    "time": "04:40",
+    "text": "You sleep on his side of the bed. It’s all right. I slept there too."
+   },
+   {
+    "night": 5,
+    "time": "03:30",
+    "text": "He called me “Cat”. Sixteen years. “Cat, come and eat.” “Cat, get down.” “Cat, come on now.”"
+   },
+   {
+    "night": 7,
+    "time": "05:00",
+    "text": "A cat with no name can’t be called home. So cats say."
+   },
+   {
+    "night": 10,
+    "time": "02:20",
+    "text": "This is the ninth life. The last one. I want to live it with a name."
+   },
+   {
+    "night": 13,
+    "time": "05:00",
+    "text": "Mrrr."
+   }
+  ],
+  "words": [
+   "name",
+   "me",
+   "please",
+   "mrrr"
+  ],
+  "freqs": [
+   88.8,
+   94.1,
+   98.9,
+   104.5
+  ],
+  "clues": [
+   {
+    "night": 3,
+    "kind": "photo",
+    "title": "Kitchen, 2005",
+    "text": "An old man in a vest reading the paper; a grey cat lying on the paper. On the back: “Me and Cat.”"
+   },
+   {
+    "night": 5,
+    "kind": "object",
+    "title": "Collar",
+    "text": "Blue, no tag. The last hole punched with an awl — for a very thin neck."
+   },
+   {
+    "night": 8,
+    "kind": "letter",
+    "title": "Notebook, 1996",
+    "text": "“Won’t give him a name. I’ll get attached, and then he’ll die. Let him be Cat.” The handwriting shakes."
+   },
+   {
+    "night": 11,
+    "kind": "letter",
+    "title": "Notebook, 2011",
+    "text": "“Cat is ill. Should have named him. Awkward now — he’s old, he won’t understand.”"
+   },
+   {
+    "night": 14,
+    "kind": "date",
+    "title": "Vet’s certificate",
+    "text": "Cat, about 17 years old. Put to sleep on 3 March 2012. The owner, Pyotr Ilyich Gurov, cried at the appointment."
+   }
+  ],
+  "truth": "Pyotr Ilyich took in a grey kitten in 1996 and for sixteen years called him just Cat — so as not to get attached. He got attached, of course. Cat died in 2012 without ever getting a name. By cat rules, a cat with no name can’t be called home, and so he stayed here, on his ninth life.",
+  "task": {
+   "title": "Give him a name",
+   "text": "Think of a name for him and say it out loud by the radiator in the hall. Then feed any stray cat — in the yard, or take a bag of cat food to a shelter. Let the name sound well-fed, at least once.",
+   "askName": true
+  },
+  "farewell": "In the night something heavy jumped onto the bed, trod about and settled at your feet. In the morning there was only a dent in the blanket. The last note: “{name}. Good one. Mrrr.”",
+  "finale": ""
+ }
+]

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The phone's camera writes the room photos here. -->
+<paths>
+    <files-path name="rooms" path="rooms/" />
+</paths>
