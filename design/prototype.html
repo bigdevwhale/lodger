@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lodger — прототип</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=PT+Mono&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0a08; --shell:#16120f; --paper:#e8dcc2; --paper2:#d9c9a6; --ink:#2b2119;
+  --text:#e3d6bd; --dim:#8b7a62; --faint:#4a3f33; --amber:#d8a856; --red:#a33b2b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'PT Serif',Georgia,serif;min-height:100vh}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.stage{display:flex;gap:28px;justify-content:center;align-items:flex-start;padding:24px 16px;flex-wrap:wrap}
+
+/* ---------- phone ---------- */
+.phone{width:390px;max-width:100%;height:800px;border:10px solid #050403;border-radius:38px;background:var(--shell);
+  position:relative;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px #000c}
+.top{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #2a221b}
+.brand{font-weight:700;letter-spacing:.32em;text-transform:uppercase;font-size:15px;color:var(--paper)}
+.meta{font-size:12px;color:var(--dim);text-align:right}
+.meta b{color:var(--text);font-weight:400}
+main{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 16px 24px;scrollbar-width:none}
+main::-webkit-scrollbar{display:none}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #2a221b;background:#110e0b}
+.tabs button{padding:12px 0 16px;font-size:12px;color:var(--dim);letter-spacing:.06em;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
+.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5}
+.tabs button.on{color:var(--amber)}
+.tabs .dot{position:absolute;top:8px;right:calc(50% - 18px);width:7px;height:7px;border-radius:50%;background:var(--red);display:none}
+.tabs .dot.on{display:block}
+h2{font-weight:400;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:6px 0 12px}
+
+/* ---------- flat ---------- */
+.latest{background:#1d1814;border:1px solid #2e261e;border-radius:6px;padding:12px 14px;margin-bottom:18px;cursor:pointer}
+.latest .k{font-size:11px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase}
+.latest p{margin-top:6px;font-style:italic;line-height:1.4}
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rooms .tile:last-child{grid-column:1/3}
+.tile{position:relative;cursor:pointer}
+.tile .lbl{display:flex;justify-content:space-between;font-size:13px;margin-top:6px;color:var(--text)}
+.tile .lbl span{color:var(--dim);font-size:12px}
+.tile .new{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red)}
+.ph{position:relative;border-radius:3px;overflow:hidden;background:#000;border:3px solid #e9e0cb;box-shadow:0 2px 8px #0008}
+.ph svg.room{display:block;width:100%;height:auto;filter:sepia(.45) contrast(1.08) brightness(.95)}
+.ph::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 35%,#000a 100%);pointer-events:none}
+.ph .grain{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:overlay;opacity:.35;pointer-events:none}
+.flicker svg.room{animation:flick 7s infinite}
+@keyframes flick{0%,91%,100%{filter:sepia(.45) contrast(1.08) brightness(.95)}92%{filter:sepia(.45) brightness(.55)}93%{filter:sepia(.45) brightness(1.1)}95%{filter:sepia(.45) brightness(.7)}}
+
+/* ---------- notes ---------- */
+.note{background:var(--paper);color:var(--ink);padding:12px 16px 14px;margin:0 6px 16px;box-shadow:0 3px 10px #0009;position:relative}
+.note::before{content:"";position:absolute;top:-6px;left:50%;width:46px;height:14px;margin-left:-23px;background:#c9b88e88;transform:rotate(-3deg)}
+.note .t{font-family:'PT Mono',monospace;font-size:11px;color:#7a6a52}
+.note p{font-family:'Caveat',cursive;font-size:25px;line-height:1.1;margin-top:4px}
+.note.fresh{outline:2px solid var(--red);outline-offset:3px}
+.empty{color:var(--dim);font-style:italic;text-align:center;margin-top:60px}
+
+/* ---------- radio ---------- */
+.set{background:linear-gradient(#3b2a1d,#2a1e15);border-radius:14px;padding:16px;border:1px solid #4c3826;box-shadow:inset 0 1px 0 #6b4f35}
+.screen{background:#0d0b07;border-radius:6px;padding:12px 14px;height:118px;position:relative;overflow:hidden;border:1px solid #000}
+.freq{font-family:'PT Mono',monospace;color:#d8a856;font-size:28px;text-shadow:0 0 10px #d8a85688}
+.freq small{font-size:13px;color:#8b6d3a}
+.bars{position:absolute;top:16px;right:14px;display:flex;gap:3px;align-items:flex-end;height:22px}
+.bars i{width:5px;background:#3a2c18;display:block}
+.bars i.on{background:#d8a856;box-shadow:0 0 6px #d8a856}
+.catch{font-family:'PT Mono',monospace;font-size:24px;color:#cfc3a4;margin-top:12px;letter-spacing:.08em;min-height:34px;white-space:nowrap}
+.catch b{color:#f3e2b5;text-shadow:0 0 12px #f3e2b5aa;font-weight:400}
+.dial{margin-top:14px;height:64px;position:relative;background:linear-gradient(#e8d6a8,#cdb57c);border-radius:4px;cursor:ew-resize;touch-action:none;overflow:hidden;box-shadow:inset 0 0 14px #7a5a2a}
+.dial svg{position:absolute;inset:0;width:100%;height:100%}
+.needle{position:absolute;top:0;bottom:0;width:2px;background:var(--red);box-shadow:0 0 6px #a33b2b}
+.knobs{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.knob{width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#6b5038,#2a1d13);border:1px solid #120c08;font-size:16px;color:#d9c39a}
+.power{padding:10px 18px;border-radius:20px;border:1px solid #6b5038;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#d9c39a}
+.power.on{background:#d8a85622;color:#f3d38e;border-color:#d8a856}
+.phrase{margin:22px 4px 8px;font-family:'Caveat',cursive;font-size:30px;line-height:1.2;text-align:center;color:var(--paper)}
+.phrase span{display:inline-block;margin:0 5px}
+.phrase .gap{color:var(--faint)}
+.phrase .got{animation:in .9s}
+@keyframes in{from{opacity:0;filter:blur(4px)}}
+.hint{color:var(--dim);font-size:13px;text-align:center;line-height:1.45;margin-top:8px}
+.voice{display:block;margin:14px auto 0;font-size:12px;color:var(--dim);text-decoration:underline dotted}
+
+/* ---------- board ---------- */
+.board{position:relative;height:520px;border-radius:6px;border:8px solid #4a3324;
+  background:#9a7448 radial-gradient(#0002 1px,transparent 1.5px) 0 0/7px 7px;box-shadow:inset 0 0 40px #0008}
+.board svg.threads{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.card{position:absolute;width:142px;cursor:pointer;box-shadow:0 4px 10px #0008;transition:transform .2s}
+.card:hover{transform:scale(1.04) rotate(0)!important;z-index:5}
+.card::before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e46a54,#7a1f14);box-shadow:0 2px 3px #0008;z-index:2}
+.card .ttl{font-size:12px;font-weight:700;margin-bottom:4px}
+.card .txt{font-size:12px;line-height:1.3;max-height:62px;overflow:hidden}
+.c-photo{background:#efe7d5;padding:7px 7px 6px;color:var(--ink)}
+.c-photo .pic{height:84px;background:radial-gradient(ellipse at 40% 40%,#8c7658,#2d2218);position:relative;overflow:hidden}
+.c-photo .pic::after{content:"";position:absolute;left:48%;bottom:-10px;width:30px;height:62px;border-radius:15px 15px 0 0;background:#1d150e;opacity:.6;filter:blur(1px)}
+.c-photo .ttl{font-family:'Caveat',cursive;font-size:18px;font-weight:500;margin:4px 0 0}
+.c-letter{background:var(--paper) repeating-linear-gradient(transparent 0 17px,#9bb2c455 17px 18px);padding:10px 10px 12px;color:#23324a}
+.c-letter .txt{font-family:'Caveat',cursive;font-size:17px;line-height:18px;max-height:90px}
+.c-ticket{background:#e6c7b0;padding:10px;color:#4a1f14;border-left:3px dashed #b5866a}
+.c-object{background:#c9a874;padding:10px;color:#2b1d10;border-radius:2px 14px 14px 2px}
+.c-object .ttl::before{content:"◯ ";font-size:9px}
+.c-date,.c-address{background:#f1ead8;padding:10px;color:var(--ink);font-family:'PT Mono',monospace;border-top:5px solid #b44a3a}
+.c-date .txt,.c-address .txt{font-size:11px}
+.slot{position:absolute;width:142px;height:110px;border:2px dashed #0005;border-radius:4px;display:grid;place-items:center;color:#0006;font-size:26px}
+.boardbar{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:13px;color:var(--dim)}
+.btn{padding:11px 18px;border-radius:4px;background:var(--amber);color:#1a120a;font-weight:700;letter-spacing:.04em}
+.btn[disabled]{background:#2a221b;color:#5a4d3e;cursor:default}
+.btn.ghost{background:none;border:1px solid var(--dim);color:var(--text);font-weight:400}
+
+/* ---------- modal / banner / overlay ---------- */
+.modal{position:absolute;inset:0;background:#000c;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}
+.hidden{display:none!important}
+.sheet{width:100%;max-height:100%;overflow:auto;background:#1b1612;border:1px solid #3a2f25;border-radius:8px;padding:16px;position:relative}
+.sheet .x{position:absolute;top:8px;right:10px;font-size:22px;color:var(--dim);z-index:3}
+.sheet .cap{margin-top:12px;font-size:12px;color:var(--dim);font-family:'PT Mono',monospace}
+.sheet ul{list-style:none;margin-top:10px}
+.sheet li{padding:8px 0;border-top:1px solid #2c241c;line-height:1.4;font-style:italic}
+.sheet li b{font-style:normal;font-weight:400;color:var(--dim);font-size:12px;display:block}
+.paper{background:var(--paper);color:var(--ink);padding:18px;border-radius:2px;line-height:1.5}
+.paper .kick{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7a6a52}
+.paper h3{font-size:24px;margin:4px 0 2px}
+.paper .yrs{font-style:italic;color:#6a5a44;margin-bottom:12px}
+.task{margin-top:16px;border:2px solid var(--ink);padding:12px 14px;background:#f3ead6}
+.task .kick{color:var(--red)}
+.task h4{font-size:18px;margin:2px 0 6px}
+.task input{width:100%;margin-top:10px;padding:8px 10px;font:inherit;border:1px solid #8a7a62;background:#fff8e8}
+.sheet .row{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+.banner{position:absolute;top:10px;left:10px;right:10px;background:#2a231cee;border:1px solid #4a3c2e;border-radius:14px;padding:10px 14px;z-index:15;
+  transform:translateY(-140%);transition:transform .45s cubic-bezier(.2,.9,.3,1.2);cursor:pointer;backdrop-filter:blur(6px)}
+.banner.show{transform:none}
+.banner .k{font-size:11px;color:var(--dim);display:flex;justify-content:space-between}
+.banner p{font-family:'Caveat',cursive;font-size:22px;line-height:1.1;margin-top:2px;color:var(--paper)}
+.overlay{position:absolute;inset:0;background:#000;z-index:30;display:flex;flex-direction:column;justify-content:center;padding:34px;gap:18px}
+.overlay p{font-size:19px;line-height:1.5;opacity:0;animation:fade 1.6s forwards}
+.overlay p.big{font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+.overlay .btn{align-self:flex-start;opacity:0;animation:fade 1s forwards}
+@keyframes fade{to{opacity:1}}
+.shake{animation:shake .35s}
+@keyframes shake{20%{transform:translateX(-4px)}40%{transform:translateX(4px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+
+/* ---------- dev panel ---------- */
+.dev{width:300px;max-width:100%;font-size:14px;color:var(--dim)}
+.dev h1{font-size:16px;color:var(--text);letter-spacing:.1em;margin-bottom:4px}
+.dev p{line-height:1.45;margin:8px 0}
+.dev label{display:block;margin-top:16px;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+.dev select,.dev input[type=range]{width:100%;margin-top:6px;background:#1b1612;color:var(--text);border:1px solid #3a2f25;padding:6px;font:inherit}
+.dev .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.dev .btns button{border:1px solid #3a2f25;padding:7px 11px;border-radius:4px;color:var(--text);font-size:13px}
+.dev .btns button:hover{border-color:var(--amber)}
+@media (max-width:440px){.phone{height:760px;border-width:0;border-radius:0}.stage{padding:0 0 24px}.dev{padding:0 16px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="blur"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <radialGradient id="mirrorG" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#8f8572"/><stop offset="1" stop-color="#2f2a23"/></radialGradient>
+    <linearGradient id="nightG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0e19"/><stop offset="1" stop-color="#252a39"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <header class="top">
+      <div class="brand">Lodger</div>
+      <div class="meta"><b id="who"></b><br><span id="nightLbl"></span></div>
+    </header>
+    <div class="banner" id="banner"></div>
+    <main id="view"></main>
+    <nav class="tabs" id="tabs">
+      <button data-tab="flat"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z"/><path d="M10 20v-5h4v5"/></svg>Квартира<i class="dot"></i></button>
+      <button data-tab="notes"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h3"/></svg>Записки<i class="dot"></i></button>
+      <button data-tab="radio"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8 17 3"/><circle cx="16" cy="14" r="2.5"/><path d="M6 12h5M6 15h5"/></svg>Радио<i class="dot"></i></button>
+      <button data-tab="board"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M7 8l5 6 5-4"/><circle cx="7" cy="8" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="17" cy="10" r="1"/></svg>Доска<i class="dot"></i></button>
+    </nav>
+    <div class="modal hidden" id="modal"></div>
+    <div class="overlay hidden" id="overlay"></div>
+  </div>
+
+  <aside class="dev">
+    <h1>LODGER · прототип</h1>
+    <p>В квартире кто-то живёт. Каждую ночь появляются следы на фото комнат, записки, слова в радиошуме и улики на доске. Когда история сложена, нужно сделать одно настоящее дело, и жилец уходит.</p>
+    <p>В приложении фото комнат будут твоими, снятыми системной камерой. Здесь они нарисованы.</p>
+    <label>Жилец (спойлер)</label>
+    <select id="devLodger"></select>
+    <label>Ночь: <span id="devNightV"></span></label>
+    <input type="range" id="devNight" min="1" max="14">
+    <label>Страх</label>
+    <select id="devFear">
+      <option value="0">Свеча — без пугалок</option>
+      <option value="1">Фонарь — стуки, мерцание</option>
+      <option value="2">Полнолуние — мелькания на фото</option>
+    </select>
+    <div class="btns">
+      <button id="devNext">Следующая ночь →</button>
+      <button id="devKnock">Стук</button>
+      <button id="devAll">Открыть всё</button>
+      <button id="devReset">Сбросить</button>
+    </div>
+  </aside>
+</div>
+
+<script src="stories.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const NIGHTS = 14;
+const ROOMS = {hall:'Прихожая', kitchen:'Кухня', room:'Комната', bath:'Ванная', balcony:'Балкон'};
+const ROOM_ORDER = ['hall','kitchen','room','bath','balcony'];
+
+/* ---------- state ---------- */
+let S = null;
+try { S = JSON.parse(localStorage.getItem('lodger.v1')); } catch (e) {}
+if (!S) S = {i:0, night:1, fear:1, words:{}, done:{}, intro:{}, names:{}, voice:true, freq:95.0, seen:{}};
+const save = () => { try { localStorage.setItem('lodger.v1', JSON.stringify(S)); } catch (e) {} };
+const L = () => LODGERS[S.i];
+const got = () => S.words[L().id] || (S.words[L().id] = []);
+const wordNight = (k, n) => 2 + Math.round(k * 10 / Math.max(1, n - 1));
+let tab = 'flat';
+
+function rng(seed) {
+  let h = 2166136261;
+  for (const c of String(seed)) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return () => { h += 0x6D2B79F5; let t = h; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+
+/* ---------- rooms (drawn stand-ins for the user's photos) ---------- */
+const lines = (step, op, vertical = true) => {
+  let s = '';
+  for (let v = 0; v < (vertical ? 360 : 240); v += step)
+    s += vertical ? `<line x1="${v}" y1="0" x2="${v}" y2="240" stroke="#e0cca0" stroke-opacity="${op}"/>`
+                  : `<line x1="0" y1="${v}" x2="360" y2="${v}" stroke="#e0cca0" stroke-opacity="${op}"/>`;
+  return s;
+};
+const night = r => {
+  let s = '';
+  for (let k = 0; k < 46; k++) s += `<circle cx="${r()*360}" cy="${r()*130}" r="${.5 + r()}" fill="#ece5cc" opacity="${.4 + r()*.6}"/>`;
+  return s;
+};
+const ROOM_SVG = {
+  hall: () => `<rect width="360" height="240" fill="#3d3127"/>${lines(18,.05)}
+    <rect y="180" width="360" height="60" fill="#241c15"/><line x1="0" y1="180" x2="360" y2="180" stroke="#15100b" stroke-width="3"/>
+    <rect x="40" y="36" width="84" height="144" fill="#2b221a" stroke="#18120d" stroke-width="3"/>
+    <rect x="52" y="50" width="60" height="50" fill="none" stroke="#1f1812" stroke-width="2"/><rect x="52" y="110" width="60" height="58" fill="none" stroke="#1f1812" stroke-width="2"/>
+    <circle cx="113" cy="114" r="3.5" fill="#8a7552"/>
+    <ellipse cx="205" cy="92" rx="30" ry="46" fill="url(#mirrorG)" stroke="#6b5636" stroke-width="4"/>
+    <line x1="266" y1="56" x2="344" y2="56" stroke="#6b5636" stroke-width="3"/>
+    <path d="M286 56q-16 42-9 96h30q5-52-8-96z" fill="#251d16"/><path d="M322 56q-6 30-2 58h16q2-30-6-58z" fill="#2e241b"/>
+    <path d="M58 196h22v8h-24zM86 198h22v8h-24z" fill="#120d09"/>
+    <rect x="290" y="150" width="40" height="26" rx="3" fill="#4a3a2b"/>`,
+  kitchen: () => `<rect width="360" height="240" fill="#3f3428"/>${lines(22,.04)}
+    <rect y="190" width="360" height="50" fill="#261d15"/><line x1="0" y1="190" x2="360" y2="190" stroke="#15100b" stroke-width="3"/>
+    <rect x="210" y="34" width="112" height="88" fill="url(#nightG)" stroke="#6b5a44" stroke-width="5"/>
+    <circle cx="300" cy="54" r="6" fill="#ddd5b8" opacity=".75"/>
+    <line x1="266" y1="34" x2="266" y2="122" stroke="#6b5a44" stroke-width="3"/><line x1="210" y1="72" x2="322" y2="72" stroke="#6b5a44" stroke-width="3"/>
+    <rect x="18" y="112" width="74" height="78" fill="#4d443a" stroke="#1d1712" stroke-width="2"/>
+    <rect x="28" y="140" width="54" height="36" fill="#2a241e" stroke="#1d1712"/>
+    <ellipse cx="38" cy="112" rx="10" ry="2.6" fill="#1b1611"/><ellipse cx="72" cy="112" rx="10" ry="2.6" fill="#1b1611"/>
+    <rect x="112" y="20" width="36" height="24" fill="#2b241c" stroke="#7a6a50" stroke-width="2"/>
+    <path d="M116 26h28M116 31h28M116 36h28M116 41h28" stroke="#7a6a50"/>
+    <rect x="186" y="150" width="156" height="9" fill="#5b4733"/><rect x="196" y="159" width="6" height="32" fill="#3d2f22"/><rect x="326" y="159" width="6" height="32" fill="#3d2f22"/>`,
+  room: () => `<rect width="360" height="240" fill="#3a2f26"/>${lines(26,.05)}
+    <ellipse cx="136" cy="92" rx="60" ry="50" fill="#e0b060" opacity=".07"/>
+    <rect y="186" width="360" height="54" fill="#231b14"/>
+    <ellipse cx="220" cy="212" rx="118" ry="16" fill="#3b2219" opacity=".85"/>
+    <rect x="34" y="34" width="92" height="112" fill="url(#nightG)" stroke="#5f4f3c" stroke-width="5"/>
+    <line x1="80" y1="34" x2="80" y2="146" stroke="#5f4f3c" stroke-width="3"/><line x1="34" y1="88" x2="126" y2="88" stroke="#5f4f3c" stroke-width="3"/>
+    <rect x="28" y="144" width="104" height="6" fill="#5f4f3c"/>
+    <path d="M24 24q16 62 0 128h18q-8-64 0-128z" fill="#5a2f26"/><path d="M136 24q-16 62 0 128h-18q8-64 0-128z" fill="#5a2f26"/>
+    <rect x="150" y="126" width="150" height="40" rx="8" fill="#4a3528"/><rect x="144" y="150" width="162" height="34" rx="8" fill="#553d2e"/>
+    <rect x="312" y="24" width="48" height="162" fill="#2c2219" stroke="#16100b" stroke-width="2"/><line x1="336" y1="24" x2="336" y2="186" stroke="#16100b" stroke-width="2"/>
+    <line x1="138" y1="186" x2="138" y2="98" stroke="#1a140f" stroke-width="3"/><path d="M124 98h28l-6-22h-16z" fill="#7a5a32"/>`,
+  bath: () => `<rect width="360" height="240" fill="#454036"/>${lines(20,.07)}${lines(20,.07,false)}
+    <rect y="192" width="360" height="48" fill="#28241e"/>
+    <path d="M16 132h178v34q0 26-26 26H42q-26 0-26-26z" fill="#cfc6b2" opacity=".82"/><rect x="12" y="128" width="186" height="8" rx="4" fill="#e2dac8"/>
+    <path d="M40 128v-16h14" stroke="#9a8f78" stroke-width="4" fill="none"/>
+    <rect x="238" y="36" width="74" height="84" fill="url(#mirrorG)" stroke="#8a7a5e" stroke-width="3"/>
+    <path d="M244 136h62q-4 22-31 22t-31-22z" fill="#d9d1bf"/><rect x="270" y="156" width="10" height="36" fill="#cfc6b2"/>
+    <rect x="318" y="14" width="30" height="22" fill="#2b2620" stroke="#8a7a5e" stroke-width="2"/>
+    <path d="M322 20h22M322 25h22M322 30h22" stroke="#8a7a5e"/>`,
+  balcony: r => `<rect width="360" height="240" fill="url(#nightG)"/>${night(r)}
+    <circle cx="292" cy="46" r="16" fill="#e6dfc4" opacity=".9"/><circle cx="299" cy="41" r="15" fill="#10162a"/>
+    ${[[40,118,60],[104,98,70],[178,126,44],[226,108,58],[288,122,72]].map(([x,y,w]) => {
+      let s = `<rect x="${x}" y="${y}" width="${w}" height="${200-y}" fill="#080a10"/>`;
+      for (let yy = y + 10; yy < 196; yy += 14) for (let xx = x + 6; xx < x + w - 8; xx += 13)
+        if (r() < .22) s += `<rect x="${xx}" y="${yy}" width="6" height="7" fill="#d8b25a" opacity="${.35 + r()*.5}"/>`;
+      return s;
+    }).join('')}
+    <rect y="150" width="360" height="4" fill="#2e2822"/>${Array.from({length:20}, (_, k) => `<line x1="${40 + k*17}" y1="154" x2="${40 + k*17}" y2="204" stroke="#2e2822" stroke-width="2"/>`).join('')}
+    <rect y="204" width="360" height="36" fill="#1a1612"/><rect width="36" height="240" fill="#2d251d"/>`,
+};
+// anchors: where a trace of a given kind sits in each room; third value = scale / height
+const ANCH = {
+  hall:    {floor:[250,212], table:[250,212], wall:[300,120], mirror:[205,92], mirrorfig:[205,100,.42], door:[82,118], gap:[121,108,140], corner:[345,168], vent:[300,26], sky:[205,70], rail:[250,200], sill:[84,200]},
+  kitchen: {floor:[140,214], table:[262,141], wall:[160,82], mirror:[266,80], door:[150,132], gap:[56,158,30], corner:[60,184], vent:[130,32], sky:[290,60], rail:[262,141]},
+  room:    {floor:[220,212], table:[225,140], wall:[225,70], mirror:[80,92], door:[256,126], gap:[336,105,150], corner:[205,178], vent:[225,20], sky:[80,70], rail:[80,140]},
+  bath:    {floor:[210,216], table:[275,140], wall:[150,72], mirror:[275,78], door:[330,130], gap:[150,150,60], corner:[338,182], vent:[333,25], sky:[275,60], rail:[275,140]},
+  balcony: {floor:[200,222], table:[300,198], wall:[18,110], mirror:[150,80], door:[240,94], gap:[30,150,120], corner:[330,182], vent:[18,30], sky:[180,40], rail:[240,150], below:[110,186,.3]},
+};
+const TYPE_ANCHOR = {footprints:'floor', wet:'floor', paws:'floor', thread:'floor', letter:'floor', chair:'floor', crumbs:'table', cup:'table',
+  figure:'door', eyes:'corner', hand:'mirror', writing:'mirror', frost:'mirror', door:'gap', keys:'wall', light:'sky', cat:'rail'};
+
+function figurePath(x, y, s, op) {
+  return `<g transform="translate(${x} ${y}) scale(${s})" filter="url(#blur)" opacity="${op}">
+    <circle cx="0" cy="-50" r="11" fill="#060403"/>
+    <path d="M-24 60C-26 10-20-30 0-37C20-30 26 10 24 60Z" fill="#060403"/></g>`;
+}
+function traceSVG(t, room, seed) {
+  const [, , type, , mark, at] = t;
+  const a = ANCH[room][at || TYPE_ANCHOR[type]] || ANCH[room].floor;
+  const [x, y, k] = a, r = rng(seed);
+  switch (type) {
+    case 'footprints': case 'wet': {
+      const fill = type === 'wet' ? 'fill="rgba(150,180,205,.4)" stroke="rgba(210,225,240,.35)"' : 'fill="rgba(10,7,5,.62)"';
+      let s = '';
+      for (let i = 0; i < 5; i++) { const px = x - 80 + i * 38, py = y + (i % 2 ? 5 : -5); s += `<ellipse cx="${px}" cy="${py}" rx="9" ry="3.4" ${fill}/><ellipse cx="${px + 13}" cy="${py}" rx="3.6" ry="2.6" ${fill}/>`; }
+      return s;
+    }
+    case 'paws': {
+      let s = '';
+      for (let i = 0; i < 5; i++) { const px = x - 60 + i * 28, py = y + (i % 2 ? 4 : -4);
+        s += `<g fill="rgba(10,7,5,.6)"><ellipse cx="${px}" cy="${py}" rx="3.8" ry="2.4"/><circle cx="${px+5}" cy="${py-2.5}" r="1.3"/><circle cx="${px+6.2}" cy="${py}" r="1.3"/><circle cx="${px+5}" cy="${py+2.5}" r="1.3"/></g>`; }
+      return s;
+    }
+    case 'crumbs': {
+      let s = '';
+      for (let i = 0; i < 15; i++) { const an = Math.PI + i / 14 * Math.PI; s += `<circle cx="${x + Math.cos(an) * 22}" cy="${y + 4 + Math.sin(an) * 8}" r="1.4" fill="#d6c08f"/>`; }
+      return s;
+    }
+    case 'cup':
+      return `<g transform="translate(${x} ${y})"><ellipse cx="0" cy="7" rx="17" ry="4" fill="#cbbd9f"/><path d="M-9-8h18l-2 14h-14z" fill="#e3d7be"/><path d="M9-5q8 1 0 8" fill="none" stroke="#e3d7be" stroke-width="2"/></g>`;
+    case 'chair':
+      return `<g transform="translate(${x} ${y - 16})" stroke="#0f0b07" stroke-width="3.5" fill="none" stroke-linecap="round"><path d="M-15 0h30M-15 0v32M15 0v32M-15 0v-38M-15-38h6M-15-20h6"/></g>`;
+    case 'thread': {
+      let d = `M${x - 70} ${y}`;
+      for (let i = 0; i < 12; i++) d += ` C${x - 70 + r()*140} ${y - 18 + r()*36} ${x - 70 + r()*140} ${y - 18 + r()*36} ${x - 70 + r()*140} ${y - 12 + r()*24}`;
+      return `<path d="${d}" fill="none" stroke="#b0402e" stroke-width="1.2" opacity=".85"/>`;
+    }
+    case 'figure': return figurePath(x, y, k || 1, .62);
+    case 'eyes': {
+      const c = room === 'room' && seed.includes('cat') ? '#9fe08a' : '#f0d27a';
+      return `<g filter="url(#glow)"><circle cx="${x - 6}" cy="${y}" r="2.2" fill="${c}"/><circle cx="${x + 6}" cy="${y}" r="2.2" fill="${c}"/></g>`;
+    }
+    case 'hand': {
+      let s = `<g transform="translate(${x} ${y}) rotate(${-8 + r()*16})" fill="rgba(232,222,200,.24)"><ellipse cx="0" cy="8" rx="11" ry="13"/>`;
+      [[-30,-9],[-10,-11],[8,-11],[26,-8]].forEach(([an, ox]) => s += `<rect x="-2.8" y="-30" width="5.6" height="22" rx="2.8" transform="translate(${ox * .6} 2) rotate(${an * .4})"/>`);
+      return s + `<rect x="-2.8" y="-16" width="5.6" height="16" rx="2.8" transform="translate(-11 12) rotate(-55)"/></g>`;
+    }
+    case 'writing':
+      return `<text x="${x}" y="${y + 8}" text-anchor="middle" font-family="Caveat" font-size="${mark.length > 6 ? 20 : 28}" fill="rgba(240,232,214,.66)" transform="rotate(-5 ${x} ${y})">${mark}</text>`;
+    case 'frost': {
+      let s = `<circle cx="${x}" cy="${y}" r="30" fill="rgba(220,235,245,.12)"/><g stroke="rgba(228,240,250,.55)" stroke-width=".8" fill="none">`;
+      for (let i = 0; i < 14; i++) { const an = r() * Math.PI * 2, l = 12 + r() * 22, ex = x + Math.cos(an) * l, ey = y + Math.sin(an) * l;
+        s += `<path d="M${x} ${y}L${ex} ${ey}M${(x + ex) / 2} ${(y + ey) / 2}l${Math.cos(an + .7) * 6} ${Math.sin(an + .7) * 6}"/>`; }
+      return s + '</g>';
+    }
+    case 'door':
+      return `<rect x="${x - 4}" y="${y - (k || 100) / 2}" width="9" height="${k || 100}" fill="#020101"/>`;
+    case 'letter':
+      return `<g transform="translate(${x} ${y}) rotate(-12)"><rect x="-17" y="-11" width="34" height="22" fill="#ddd0b4"/><path d="M-17-11 0 2 17-11" fill="none" stroke="#9c8d70"/></g>`;
+    case 'keys':
+      return `<g transform="translate(${x} ${y})" stroke="#c4a865" stroke-width="2" fill="none"><line x1="0" y1="-24" x2="0" y2="-10"/><circle cx="0" cy="-5" r="5"/><path d="M0 0v20M0 14h5M0 18h4"/><rect x="6" y="-6" width="16" height="10" fill="#d8c9a5" stroke="none"/></g>`;
+    case 'light':
+      return `<circle cx="${x}" cy="${y}" r="2.6" fill="#ff5a3c" filter="url(#glow)"/>`;
+    case 'cat':
+      return `<path transform="translate(${x} ${y})" d="M-10 0C-14-12-10-22-6-26L-8-36-2-30H4L9-36 8-26C12-20 13-10 10 0ZM10-2Q22-2 22-14" fill="#070504" stroke="#070504" stroke-width="2" opacity=".8" filter="url(#blur)"/>`;
+  }
+  return '';
+}
+const tracesIn = room => L().traces.filter(t => t[1] === room && t[0] <= S.night);
+function roomSVG(room, extra = '') {
+  const r = rng(L().id + room);
+  const tr = tracesIn(room).map((t, i) => traceSVG(t, room, L().id + room + i)).join('');
+  return `<svg class="room" viewBox="0 0 360 240">${ROOM_SVG[room](r)}${tr}${extra}</svg>
+    <svg class="grain" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#grain)"/></svg>`;
+}
+
+/* ---------- views ---------- */
+function renderFlat() {
+  const all = L().traces.filter(t => t[0] <= S.night).sort((a, b) => b[0] - a[0]);
+  const last = all[0];
+  let h = last ? `<div class="latest" data-room="${last[1]}"><div class="k">Ночь ${last[0]} · ${ROOMS[last[1]]}</div><p>${last[3]}</p></div>`
+               : `<div class="latest"><div class="k">Ночь ${S.night}</div><p>Пока тихо. Слишком тихо для новой квартиры.</p></div>`;
+  h += '<h2>Комнаты</h2><div class="rooms">';
+  for (const room of ROOM_ORDER) {
+    const tr = tracesIn(room), fresh = tr.some(t => t[0] === S.night);
+    h += `<div class="tile" data-room="${room}"><div class="ph ${S.fear > 0 ? 'flicker' : ''}">${roomSVG(room)}</div>
+      ${fresh ? '<i class="new"></i>' : ''}<div class="lbl">${ROOMS[room]}<span>${tr.length ? 'следов: ' + tr.length : 'пусто'}</span></div></div>`;
+  }
+  h += '</div>';
+  $('#view').innerHTML = h;
+  $('#view').querySelectorAll('[data-room]').forEach(el => el.onclick = () => openRoom(el.dataset.room));
+}
+
+function openRoom(room) {
+  const tr = tracesIn(room).sort((a, b) => b[0] - a[0]);
+  const flash = S.fear >= 2 ? `<g id="flashFig" opacity="0">${figurePath(...ANCH[room].corner.slice(0, 2), .9, .8)}</g>` : '';
+  const time = `${20 + (S.night * 7) % 4}:${String(10 + (S.night * 13) % 49).padStart(2, '0')}`;
+  showModal(`<div class="ph ${S.fear > 0 ? 'flicker' : ''}">${roomSVG(room, flash)}</div>
+    <div class="cap">${ROOMS[room].toUpperCase()} · СНЯТО В ${time} · НОЧЬ ${S.night}</div>
+    <ul>${tr.length ? tr.map(t => `<li><b>Ночь ${t[0]}</b>${t[3]}</li>`).join('') : '<li>На снимке ничего необычного. Пока.</li>'}</ul>`);
+  if (flash && Math.random() < .55) setTimeout(() => {
+    const g = document.getElementById('flashFig');
+    if (!g) return;
+    g.setAttribute('opacity', '.75'); thud();
+    setTimeout(() => g.setAttribute('opacity', '0'), 140);
+  }, 1500 + Math.random() * 2500);
+}
+
+function renderNotes() {
+  const ns = L().notes.filter(n => n[0] <= S.night).sort((a, b) => b[0] - a[0]);
+  if (!ns.length) { $('#view').innerHTML = '<p class="empty">Записок пока нет.</p>'; return; }
+  const r = rng(L().id + 'notes');
+  $('#view').innerHTML = '<h2>Записки</h2>' + ns.map(n =>
+    `<div class="note ${n[0] === S.night ? 'fresh' : ''}" style="transform:rotate(${(r() * 4 - 2).toFixed(1)}deg)">
+      <div class="t">НОЧЬ ${n[0]} · ${n[1]}</div><p>${n[2]}</p></div>`).join('');
+}
+
+/* ---------- radio ---------- */
+let ac = null, master, noiseGain, bp, powered = false, ticker = null, lock = 0;
+function ensureAC() {
+  if (ac) return ac;
+  try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
+  master = ac.createGain(); master.gain.value = .6; master.connect(ac.destination);
+  const buf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const src = ac.createBufferSource(); src.buffer = buf; src.loop = true;
+  bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = .6; bp.frequency.value = 1800;
+  noiseGain = ac.createGain(); noiseGain.gain.value = 0;
+  src.connect(bp); bp.connect(noiseGain); noiseGain.connect(master); src.start();
+  return ac;
+}
+function thud(n = 1) {
+  if (!ensureAC() || S.fear === 0) return;
+  for (let i = 0; i < n; i++) {
+    const t = ac.currentTime + i * .32, o = ac.createOscillator(), g = ac.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(95, t); o.frequency.exponentialRampToValueAtTime(42, t + .18);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.9, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + .28);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + .3);
+  }
+}
+function speak(w) {
+  if (!S.voice || !window.speechSynthesis) return;
+  const u = new SpeechSynthesisUtterance(w);
+  u.lang = 'ru-RU'; u.pitch = .1; u.rate = .55; u.volume = .7;
+  const v = speechSynthesis.getVoices().find(v => v.lang && v.lang.startsWith('ru'));
+  if (v) u.voice = v;
+  speechSynthesis.speak(u);
+}
+const GLYPH = '░▒▓·:;/\\|—~';
+const scramble = (w, s) => [...w].map(c => Math.random() < Math.pow(s, 1.5) ? c : GLYPH[Math.floor(Math.random() * GLYPH.length)]).join('');
+
+function renderRadio() {
+  let ticks = '';
+  for (let f = 88; f <= 108; f += .5) {
+    const x = (f - 87.5) / 20.5 * 400 + 5, big = f % 2 === 0;
+    ticks += `<line x1="${x}" y1="0" x2="${x}" y2="${big ? 22 : 12}" stroke="#4a3418" stroke-width="${big ? 1.4 : .8}"/>`;
+    if (f % 4 === 0) ticks += `<text x="${x}" y="40" text-anchor="${f === 108 ? 'end' : 'middle'}" font-family="PT Mono" font-size="12" fill="#4a3418">${f}</text>`;
+  }
+  $('#view').innerHTML = `<h2>Радио</h2><div class="set">
+      <div class="screen"><div class="freq" id="freq"></div><div class="bars" id="bars">${'<i></i>'.repeat(5)}</div><div class="catch" id="catch"></div></div>
+      <div class="dial" id="dial"><svg viewBox="0 0 410 56" preserveAspectRatio="none">${ticks}</svg><div class="needle" id="needle"></div></div>
+      <div class="knobs"><button class="knob" id="fm">◂</button><button class="power ${powered ? 'on' : ''}" id="pw">${powered ? 'Выключить' : 'Включить'}</button><button class="knob" id="fp">▸</button></div>
+    </div>
+    <div class="phrase" id="phrase"></div>
+    <p class="hint">Крути шкалу. Когда сквозь шум проступит слово, задержись на нём.</p>
+    <button class="voice" id="vc">Голос в эфире: ${S.voice ? 'вкл' : 'выкл'}</button>`;
+  const dial = $('#dial');
+  const setF = f => { S.freq = Math.round(Math.min(108, Math.max(87.5, f)) * 20) / 20; drawDial(); };
+  const fromX = e => { const b = dial.getBoundingClientRect(); setF(87.5 + (e.clientX - b.left) / b.width * 20.5); };
+  dial.onpointerdown = e => { dial.setPointerCapture(e.pointerId); fromX(e); dial.onpointermove = fromX; };
+  dial.onpointerup = () => { dial.onpointermove = null; save(); };
+  dial.onwheel = e => { e.preventDefault(); setF(S.freq + (e.deltaY > 0 ? .05 : -.05)); };
+  $('#fm').onclick = () => setF(S.freq - .1);
+  $('#fp').onclick = () => setF(S.freq + .1);
+  $('#pw').onclick = () => { powered = !powered; if (powered) { ensureAC(); ac && ac.resume(); } renderRadio(); };
+  $('#vc').onclick = () => { S.voice = !S.voice; save(); $('#vc').textContent = 'Голос в эфире: ' + (S.voice ? 'вкл' : 'выкл'); };
+  drawDial(); drawPhrase();
+  clearInterval(ticker); ticker = setInterval(tick, 90);
+}
+function drawDial() {
+  if (!$('#needle')) return;
+  $('#needle').style.left = ((S.freq - 87.5) / 20.5 * 100) + '%';
+  $('#freq').innerHTML = `${S.freq.toFixed(1)} <small>МГц</small>`;
+}
+function drawPhrase() {
+  const ws = L().radio.words, g = got();
+  $('#phrase').innerHTML = ws.map((w, k) => g.includes(k) ? `<span class="got">${w}</span>` : '<span class="gap">· · ·</span>').join('');
+}
+function tick() {
+  if (tab !== 'radio') return;
+  const {words: ws, f: fs} = L().radio, g = got();
+  let best = null, bd = 99;
+  ws.forEach((w, k) => { if (wordNight(k, ws.length) > S.night) return; const d = Math.abs(S.freq - fs[k]); if (d < bd) { bd = d; best = k; } });
+  const sig = best == null ? 0 : Math.max(0, 1 - bd / .6);
+  if (ac) {
+    noiseGain.gain.setTargetAtTime(powered ? .05 + .3 * (1 - .8 * sig) : 0, ac.currentTime, .05);
+    bp.frequency.setTargetAtTime(700 + Math.random() * 2600, ac.currentTime, .03);
+  }
+  const c = $('#catch'); if (!c) return;
+  $('#bars').querySelectorAll('i').forEach((b, i) => { b.style.height = (6 + i * 4) + 'px'; b.classList.toggle('on', powered && sig > i / 5); });
+  if (!powered) { c.textContent = ''; return; }
+  if (best != null && sig > 0) {
+    if (g.includes(best) && bd < .15) { c.innerHTML = `<b>${ws[best]}</b>`; lock = 0; return; }
+    c.textContent = scramble(ws[best], sig);
+    if (bd < .12) { lock += 90; if (lock > 1100) collect(best); } else lock = 0;
+  } else { c.textContent = Math.random() < .25 ? scramble('········', 0).slice(0, 3 + Math.random() * 6) : ''; lock = 0; }
+}
+function collect(k) {
+  lock = 0;
+  got().push(k); save();
+  $('#catch').innerHTML = `<b>${L().radio.words[k]}</b>`;
+  speak(L().radio.words[k]);
+  drawPhrase(); updateDots();
+  if (ac) { noiseGain.gain.setTargetAtTime(0, ac.currentTime, .02); }
+}
+
+/* ---------- board ---------- */
+const SLOTS = [[12, 14, -4], [176, 30, 3], [26, 186, 2], [188, 206, -3], [100, 360, 1]];
+function cardHTML(c) {
+  const [, kind, title, text] = c;
+  if (kind === 'photo') return `<div class="pic"></div><div class="ttl">${title}</div>`;
+  return `<div class="ttl">${title}</div><div class="txt">${text}</div>`;
+}
+function renderBoard() {
+  const cl = L().clues, done = S.done[L().id];
+  let h = '<h2>Доска</h2><div class="board" id="board"><svg class="threads" id="threads"></svg>';
+  cl.forEach((c, k) => {
+    const [x, y, rot] = SLOTS[k];
+    h += c[0] <= S.night
+      ? `<div class="card c-${c[1]}" data-k="${k}" style="left:${x}px;top:${y}px;transform:rotate(${rot}deg)">${cardHTML(c)}</div>`
+      : `<div class="slot" style="left:${x}px;top:${y}px">?</div>`;
+  });
+  const nc = cl.filter(c => c[0] <= S.night).length, nw = got().length, tw = L().radio.words.length;
+  const ready = nc === cl.length && nw === tw;
+  h += `</div><div class="boardbar"><span>Улики ${nc}/${cl.length} · Слова ${nw}/${tw}</span>
+    <button class="btn" id="solve" ${ready || done ? '' : 'disabled'}>${done ? 'Перечитать' : 'Сложить историю'}</button></div>`;
+  $('#view').innerHTML = h;
+  // red threads between found clues, in order
+  const b = $('#board'), cards = [...b.querySelectorAll('.card')];
+  let p = '';
+  for (let i = 1; i < cards.length; i++) {
+    const a = cards[i - 1], c = cards[i];
+    const x1 = a.offsetLeft + 71, y1 = a.offsetTop, x2 = c.offsetLeft + 71, y2 = c.offsetTop;
+    p += `<path d="M${x1} ${y1}Q${(x1 + x2) / 2} ${Math.max(y1, y2) + 40} ${x2} ${y2}" fill="none" stroke="#b02a1c" stroke-width="1.6"/>`;
+  }
+  $('#threads').innerHTML = p;
+  cards.forEach(el => el.onclick = () => {
+    const c = cl[el.dataset.k];
+    showModal(`<div class="paper"><div class="kick">Улика</div><h3>${c[2]}</h3><p style="margin-top:8px">${c[3]}</p></div>`);
+  });
+  $('#solve').onclick = () => { if (!$('#solve').disabled) openTruth(); };
+}
+
+function openTruth() {
+  const l = L(), done = S.done[l.id];
+  showModal(`<div class="paper">
+      <div class="kick">${l.kind}</div><h3>${l.name}</h3><div class="yrs">${l.years} · ${l.role}</div>
+      <p>${l.truth}</p>
+      <div class="task"><div class="kick">Незаконченное дело</div><h4>${l.task.title}</h4><p>${l.task.text}</p>
+        ${l.task.askName ? `<input id="nm" placeholder="Имя для него" value="${S.names[l.id] || ''}">` : ''}</div>
+    </div>
+    <div class="row">${done ? '' : '<button class="btn ghost" id="later">Позже</button><button class="btn" id="did">Сделано</button>'}</div>`);
+  if (done) return;
+  $('#later').onclick = closeModal;
+  $('#did').onclick = () => {
+    if (l.task.askName) {
+      const v = ($('#nm').value || '').trim();
+      if (!v) { $('#nm').classList.add('shake'); setTimeout(() => $('#nm').classList.remove('shake'), 400); return; }
+      S.names[l.id] = v;
+    }
+    S.done[l.id] = true; save(); closeModal(); farewell();
+  };
+}
+
+/* ---------- overlays ---------- */
+function showModal(inner) {
+  const m = $('#modal');
+  m.innerHTML = `<div class="sheet"><button class="x" id="mx">×</button>${inner}</div>`;
+  m.classList.remove('hidden');
+  $('#mx').onclick = closeModal;
+  m.onclick = e => { if (e.target === m) closeModal(); };
+}
+function closeModal() { $('#modal').classList.add('hidden'); $('#modal').innerHTML = ''; }
+
+function sequence(lines, btnText, onBtn) {
+  const o = $('#overlay');
+  o.innerHTML = lines.map((l, i) => `<p class="${l.big ? 'big' : ''}" style="animation-delay:${i * 1.5}s">${l.t}</p>`).join('')
+    + `<button class="btn" style="animation-delay:${lines.length * 1.5 + .3}s">${btnText}</button>`;
+  o.classList.remove('hidden');
+  o.querySelector('.btn').onclick = () => { o.classList.add('hidden'); onBtn(); };
+}
+function intro() {
+  sequence([
+    {t: 'Ночь 1', big: true},
+    {t: 'Новая квартира. Коробки ещё не разобраны.'},
+    {t: L().intro},
+    {t: 'В квартире кто-то есть.'},
+  ], 'Остаться', () => { S.intro[L().id] = true; save(); setTimeout(() => notify(), 600); });
+}
+function farewell() {
+  const l = L(), text = l.farewell.replace('{name}', S.names[l.id] || 'Кот');
+  thud(2);
+  sequence([{t: text}, {t: l.finale || 'Квартира пуста.', big: true}], 'Через неделю — новый жилец', () => {
+    S.i = (S.i + 1) % LODGERS.length; S.night = 1; save(); syncDev(); render();
+    if (!S.intro[L().id]) intro();
+  });
+}
+let bannerT = null;
+function notify() {
+  const n = L().notes.find(n => n[0] === S.night);
+  if (!n) return;
+  if (S.fear >= 1) thud(3);
+  const b = $('#banner');
+  b.innerHTML = `<div class="k"><span>LODGER</span><span>${n[1]}</span></div><p>${n[2]}</p>`;
+  b.classList.add('show');
+  b.onclick = () => { b.classList.remove('show'); setTab('notes'); };
+  clearTimeout(bannerT); bannerT = setTimeout(() => b.classList.remove('show'), 5000);
+}
+
+/* ---------- shell ---------- */
+function updateDots() {
+  const l = L(), n = S.night, ws = l.radio.words;
+  const dots = {
+    flat: l.traces.some(t => t[0] === n),
+    notes: l.notes.some(t => t[0] === n),
+    radio: ws.some((w, k) => wordNight(k, ws.length) <= n && !got().includes(k)),
+    board: l.clues.some(c => c[0] === n),
+  };
+  document.querySelectorAll('.tabs button').forEach(b => {
+    b.classList.toggle('on', b.dataset.tab === tab);
+    b.querySelector('.dot').classList.toggle('on', dots[b.dataset.tab] && b.dataset.tab !== tab);
+  });
+}
+function render() {
+  const l = L();
+  $('#who').textContent = S.done[l.id] ? `${l.kind} · ${l.name}` : 'Жилец: неизвестен';
+  $('#nightLbl').textContent = `Ночь ${S.night} из ${NIGHTS}`;
+  if (tab !== 'radio') { clearInterval(ticker); if (ac) noiseGain.gain.setTargetAtTime(0, ac.currentTime, .05); }
+  ({flat: renderFlat, notes: renderNotes, radio: renderRadio, board: renderBoard})[tab]();
+  updateDots();
+}
+function setTab(t) { tab = t; $('#view').scrollTop = 0; render(); }
+document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => setTab(b.dataset.tab));
+
+/* ---------- dev panel ---------- */
+const devL = $('#devLodger');
+devL.innerHTML = LODGERS.map((l, k) => `<option value="${k}">${k + 1}. ${l.kind} — ${l.name}</option>`).join('');
+function syncDev() {
+  devL.value = S.i; $('#devNight').value = S.night; $('#devNightV').textContent = S.night; $('#devFear').value = S.fear;
+}
+devL.onchange = () => { S.i = +devL.value; S.night = 1; save(); closeModal(); syncDev(); render(); if (!S.intro[L().id]) intro(); };
+$('#devNight').oninput = e => { S.night = +e.target.value; $('#devNightV').textContent = S.night; save(); render(); };
+$('#devNight').onchange = () => notify();
+$('#devFear').onchange = e => { S.fear = +e.target.value; save(); render(); };
+$('#devNext').onclick = () => { ensureAC(); if (S.night < NIGHTS) { S.night++; save(); syncDev(); render(); notify(); } };
+$('#devKnock').onclick = () => { ensureAC(); const f = S.fear; S.fear = Math.max(1, f); thud(3); S.fear = f; $('#phone').classList.add('shake'); setTimeout(() => $('#phone').classList.remove('shake'), 400); };
+$('#devAll').onclick = () => { S.night = NIGHTS; S.words[L().id] = L().radio.words.map((_, k) => k); save(); syncDev(); render(); };
+$('#devReset').onclick = () => { try { localStorage.removeItem('lodger.v1'); } catch (e) {} location.reload(); };
+
+syncDev(); render();
+if (!S.intro[L().id]) intro();
+</script>
+</body>
+</html>
