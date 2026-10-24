@@ -28,7 +28,13 @@ import app.lodger.ui.story.Line
 import app.lodger.ui.story.Sequence
 import app.lodger.ui.theme.C
 import app.lodger.ui.theme.LodgerTheme
-import kotlinx.coroutines.runBlocking
+import app.lodger.data.Fear
+import app.lodger.data.Photos
+import app.lodger.data.Settings
+import app.lodger.domain.Engine
+import app.lodger.domain.House
+import app.lodger.ui.art.Rooms
+import java.time.ZoneId
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -47,11 +53,18 @@ abstract class ScreensBase {
     private val out by lazy { File(System.getProperty("render.out") ?: "build/art", "screens-$lang").apply { mkdirs() } }
     private val nav = Nav({}, {}, {}, { _, _ -> })
 
-    private fun home(change: (app.lodger.domain.House) -> app.lodger.domain.House = { it }): Home = runBlocking {
+    /** The demo flat built in memory: drawn rooms as photos, the teacher at night [DemoSeed.NIGHT], three words caught. */
+    private fun home(change: (House) -> House = { it }): Home {
         val c = ApplicationProvider.getApplicationContext<LodgerApp>().container
-        DemoSeed.seedIfEmpty(c, shots = true)
-        val h = c.store.change(change)
-        Home(h, c.store.settingsNow(), Words(ru), c.lodgers(ru), System.currentTimeMillis(), still = true)
+        val photos = Room.entries.associateWith { r ->
+            val rel = "rooms/${r.key}-render.jpg"
+            c.file(rel).apply { parentFile?.mkdirs() }.outputStream().use { Rooms.draw(r).compress(Bitmap.CompressFormat.JPEG, 90, it) }
+            Photos.read(c.file(rel), rel)!!
+        }
+        val zone = ZoneId.systemDefault()
+        val arrived = Engine.evening(System.currentTimeMillis(), zone).minusDays(DemoSeed.NIGHT - 1L).atStartOfDay(zone).plusHours(19).toInstant().toEpochMilli()
+        val h = change(House(arrived = arrived, words = setOf(0, 1, 2), photos = photos, rung = DemoSeed.NIGHT))
+        return Home(h, Settings(fear = Fear.CANDLE), Words(ru), c.lodgers(ru), System.currentTimeMillis(), still = true)
     }
 
     private fun shot(name: String, content: @Composable () -> Unit) {
@@ -59,10 +72,12 @@ abstract class ScreensBase {
         rule.setContent { LodgerTheme { Box(Modifier.fillMaxSize().background(C.shell)) { content() } } }
         rule.mainClock.advanceTimeBy(3_000)
         rule.waitForIdle()
-        // Photos load off the main thread.
-        Thread.sleep(600)
-        rule.mainClock.advanceTimeBy(1_000)
-        rule.waitForIdle()
+        // Photos load and marks are painted off the main thread.
+        repeat(6) {
+            Thread.sleep(500)
+            rule.mainClock.advanceTimeBy(1_000)
+            rule.waitForIdle()
+        }
         rule.runOnUiThread {
             val view = rule.activity.window.decorView
             val image = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
@@ -77,8 +92,8 @@ abstract class ScreensBase {
         Sequence(listOf(Line(words().t("Новая квартира", "A new flat"), true), Line(words().t("Говорят, в старых домах у каждой квартиры есть жилец, который не съехал.", "They say every flat in an old house has a lodger who never moved out."))), words().t("Взять телефон", "Take the phone"), still = true) {}
     }
     @Test fun setup() = home { it.copy(arrived = 0, photos = it.photos - Room.BATH - Room.BALCONY, absent = setOf(Room.BALCONY)) }.let { h -> shot("1-setup") { SetupScreen(h) {} } }
-    @Test fun flat() = home { it.copy(seen = it.seen + "dev:teacher:room:${DemoSeed.NIGHT}") }.let { h -> shot("2-flat") { FlatScreen(h, nav) } }
-    @Test fun room() = home { it.copy(seen = it.seen + "dev:teacher:room:${DemoSeed.NIGHT}") }.let { h -> shot("3-room") { RoomPage(h, Room.ROOM, nav) } }
+    @Test fun flat() = home { it.copy(seen = setOf("dev:teacher:room:${DemoSeed.NIGHT}")) }.let { h -> shot("2-flat") { FlatScreen(h, nav) } }
+    @Test fun room() = home { it.copy(seen = setOf("dev:teacher:room:${DemoSeed.NIGHT}")) }.let { h -> shot("3-room") { RoomPage(h, Room.ROOM, nav) } }
     @Test fun hall() = home().let { h -> shot("3-hall") { RoomPage(h, Room.HALL, nav) } }
     @Test fun notes() = home().let { h -> shot("4-notes") { NotesScreen(h) } }
     @Test fun radio() = home().let { h -> shot("5-radio") { RadioScreen(h) } }

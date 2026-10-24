@@ -260,14 +260,14 @@ object Ink {
         }
 
         fun crumbs(): List<Layer> {
-            val pad = Pad(70f * u, 30f * u, cx, cy)
+            val pad = Pad(110f * u, 44f * u, cx, cy)
             val d = depth(cy)
             val colors = intArrayOf(0xFF9A6A3A.toInt(), 0xFFB98A54.toInt(), 0xFFD2AA74.toInt(), 0xFF7A5230.toInt())
-            repeat(30) { i ->
-                val an = PI + i / 29.0 * PI + (r.nextFloat() - .5f) * .12f
-                val rr = (19f + r.nextFloat() * 4f) * u * d
+            repeat(34) { i ->
+                val an = PI + i / 33.0 * PI + (r.nextFloat() - .5f) * .12f
+                val rr = (30f + r.nextFloat() * 5f) * u * d
                 val x = cos(an).toFloat() * rr; val y = 3f * u + sin(an).toFloat() * rr * .4f
-                val sz = (.5f + r.nextFloat() * 1.3f) * u * d
+                val sz = (1.1f + r.nextFloat() * 1.6f) * u * d
                 val crumb = Path().apply {
                     val k = 5 + r.nextInt(3)
                     for (j in 0 until k) {

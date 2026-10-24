@@ -37,6 +37,7 @@ import app.lodger.ui.Home
 import app.lodger.ui.Nav
 import app.lodger.ui.Overlay
 import app.lodger.ui.components.Btn
+import app.lodger.ui.components.CommunityLinks
 import app.lodger.ui.components.Gap
 import app.lodger.ui.components.Glyph
 import app.lodger.ui.components.Icon
@@ -117,6 +118,9 @@ fun SettingsPage(h: Home, nav: Nav) {
                 Chip("English", !h.ru) { AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en")) }
             }
             Gap(22.dp)
+            Label(h.w.t("Сообщество", "Community"))
+            CommunityLinks(h.w)
+            Gap(18.dp)
             Btn(h.w.t("Домовая книга", "House register"), Modifier.fillMaxWidth(), Kind.GHOST) { nav.open(Overlay.Register) }
             if (h.absentRooms.isNotEmpty()) {
                 Gap(10.dp)
@@ -126,6 +130,13 @@ fun SettingsPage(h: Home, nav: Nav) {
             }
             Gap(10.dp)
             Btn(h.w.t("Показать подсказки заново", "Show the hints again"), Modifier.fillMaxWidth(), Kind.GHOST) { c.write { unseen("coach:") } }
+            if (BuildConfig.DEMO && h.lodger != null) {
+                Gap(10.dp)
+                // Demo builds only: jump to the last night with every word caught, to try the ending.
+                Btn(h.w.t("Демо: последняя ночь", "Demo: last night"), Modifier.fillMaxWidth(), Kind.GHOST) {
+                    c.write { lastNight() }; nav.close()
+                }
+            }
             if (h.phase is Phase.Empty) {
                 Gap(10.dp)
                 Btn(h.w.t("Впустить жильца сейчас", "Let the next lodger in now"), Modifier.fillMaxWidth(), Kind.GHOST) { c.write { callNext() }; nav.close() }

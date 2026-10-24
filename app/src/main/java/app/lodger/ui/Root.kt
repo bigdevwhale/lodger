@@ -117,7 +117,8 @@ fun LodgerRoot(house: House, settings: Settings, toNotes: Int) {
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     LaunchedEffect(Unit) { while (true) { delay(30_000); now = System.currentTimeMillis() } }
     LaunchedEffect(settings.sound) { c.sfx.on = settings.sound }
-    val home = Home(house, settings, words, lodgers, now)
+    // The clock ticks every half minute, but a change to the house (someone let in early) must show at once.
+    val home = Home(house, settings, words, lodgers, maxOf(now, System.currentTimeMillis()))
 
     var tab by remember { mutableStateOf(Tab.FLAT) }
     LaunchedEffect(toNotes) { if (toNotes > 0) tab = Tab.NOTES }

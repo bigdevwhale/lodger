@@ -43,6 +43,15 @@ import androidx.compose.ui.unit.sp
 import app.lodger.domain.Clue
 import app.lodger.domain.ClueKind
 import app.lodger.domain.Engine
+import app.lodger.domain.Pos
+import app.lodger.domain.Room
+import app.lodger.ui.art.Ink
+import app.lodger.ui.art.Rooms
+import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import app.lodger.ui.Home
 import app.lodger.ui.Nav
 import app.lodger.ui.Overlay
@@ -152,12 +161,7 @@ private fun Card(c: Clue, s: Float) {
         ) {
             when (c.kind) {
                 ClueKind.PHOTO -> {
-                    Box(
-                        Modifier.fillMaxWidth().height((84 * s).dp).background(Brush.radialGradient(listOf(Color(0xFF8C7658), Color(0xFF2D2218))))
-                            .drawBehind {
-                                drawRoundRect(Color(0x991D150E), Offset(size.width * .46f, size.height * .3f), androidx.compose.ui.geometry.Size(size.width * .2f, size.height * .8f), androidx.compose.ui.geometry.CornerRadius(size.width * .1f))
-                            },
-                    )
+                    Print(c.title.hashCode(), Modifier.fillMaxWidth().height((84 * s).dp))
                     Text(c.title, style = T.Note.copy(fontSize = (17 * s).sp, color = C.ink), maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(top = 4.dp))
                 }
                 ClueKind.LETTER -> {
@@ -180,4 +184,18 @@ private fun Card(c: Clue, s: Float) {
                 .background(Brush.radialGradient(listOf(Color(0xFFE46A54), Color(0xFF7A1F14)), center = Offset(12f, 12f))),
         )
     }
+}
+
+/** An old print: one of the drawn rooms, sepia, with someone standing in it. */
+@Composable
+private fun Print(seed: Int, modifier: Modifier) {
+    val img = remember(seed) {
+        val k = Math.floorMod(seed, 15)
+        val b = Rooms.draw(Room.entries[k % Room.entries.size], 360)
+        Ink.composite(b, Ink.figure(b.width, b.height, Pos(.3f + (k % 3) * .2f, .5f), .55f)).asImageBitmap()
+    }
+    Image(img, null, modifier, contentScale = ContentScale.Crop, colorFilter = ColorFilter.colorMatrix(ColorMatrix().apply {
+        setToSaturation(0f)
+        timesAssign(ColorMatrix(floatArrayOf(1.25f, 0f, 0f, 0f, 18f, 0f, 1.05f, 0f, 0f, 10f, 0f, 0f, .8f, 0f, 0f, 0f, 0f, 0f, 1f, 0f)))
+    }))
 }

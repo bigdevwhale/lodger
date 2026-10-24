@@ -77,6 +77,14 @@ class AppContainer(context: Context) {
     suspend fun unseen(prefix: String) = store.change { h -> h.copy(seen = h.seen.filterNot { it.startsWith(prefix) }.toSet()) }
     suspend fun leave(l: Lodger, name: String?) = change { Engine.leave(it, l, System.currentTimeMillis(), ZoneId.systemDefault(), name) }
 
+    /** Demo builds: the current lodger's last night, with every word caught. */
+    suspend fun lastNight() = change { h ->
+        val l = Engine.ORDER.getOrNull(h.index)?.let { lodgers(false)[it] } ?: return@change h
+        val zone = ZoneId.systemDefault()
+        val first = Engine.evening(System.currentTimeMillis(), zone).minusDays(Engine.NIGHTS - 1L)
+        h.copy(arrived = first.atStartOfDay(zone).plusHours(19).toInstant().toEpochMilli(), words = l.words.indices.toSet(), rung = Engine.NIGHTS)
+    }
+
     /** Lets the next lodger in now instead of after the empty nights (from the settings, for the impatient). */
     suspend fun callNext() = change { h -> if (h.arrived > System.currentTimeMillis()) h.copy(arrived = System.currentTimeMillis(), rung = 0) else h }
 }
